@@ -44,15 +44,22 @@ npm run build
 
 The published site reads `public/data/rankings.json`. Local pipeline output (`transcripts/`, `scores/`, `.cache/`) stays gitignored.
 
-## Deployment (Vercel)
+## Deployment
 
-1. Create a Vercel project linked to this repo.
-2. Add GitHub secrets for the deploy workflow:
-   - `VERCEL_TOKEN`
-   - `VERCEL_ORG_ID`
-   - `VERCEL_PROJECT_ID`
-   - Optional API keys for pipeline refresh: `FIREWORKS_API_KEY`, `TRANSCRIPTAPI_API_KEY`, `SUPADATA_API_KEY`
-3. Push to `main` — GitHub Actions runs the cache-first pipeline, updates `public/data/rankings.json`, and deploys to Vercel.
+**Live site:** https://pyrytakala.github.io/content-ranker/
+
+Deployed via free GitHub Pages on push to `main` (`.github/workflows/pages.yml`).
+
+### Vercel (optional)
+
+The key in `.env` as `VERCEL_API_KEY` is a **Vercel AI Gateway** key (`vck_…`), not a deploy token. For CLI/Actions deploys, create a **personal access token** (`vcp_…`) at https://vercel.com/account/tokens and add it as GitHub secret `VERCEL_TOKEN` (plus `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` after `vercel link`).
+
+Alternatively, import the repo at https://vercel.com/new — no token needed, Vercel builds from GitHub directly.
+
+### GitHub secrets (optional pipeline refresh)
+
+- `FIREWORKS_API_KEY`, `TRANSCRIPTAPI_API_KEY`, `SUPADATA_API_KEY` — for re-scoring on merge (uses `.cache/` when available)
+- `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` — for Vercel deploy workflow
 
 ## Project layout
 
