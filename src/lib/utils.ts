@@ -39,6 +39,12 @@ export async function fetchYoutubeUploadDate(
   return uploadDateFromIso(match[1]);
 }
 
+export function daysAgo(days: number, now = new Date()): Date {
+  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  start.setDate(start.getDate() - Math.trunc(days));
+  return start;
+}
+
 export function monthsAgo(months: number, now = new Date()): Date {
   const wholeMonths = Math.trunc(months);
   const year = now.getUTCFullYear();

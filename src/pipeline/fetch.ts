@@ -238,7 +238,13 @@ export async function runFetch(argv: string[]): Promise<number> {
 
   const channelUrl =
     argv.find((arg, index) => argv[index - 1] === "--channel-url") ?? DEFAULT_CHANNEL_URL;
-  const months = Number(argv.find((arg, index) => argv[index - 1] === "--months") ?? 2);
+  const daysArg = argv.find((arg, index) => argv[index - 1] === "--days");
+  const monthsArg = argv.find((arg, index) => argv[index - 1] === "--months");
+  const listWindow = daysArg
+    ? { days: Number(daysArg) }
+    : monthsArg
+      ? { months: Number(monthsArg) }
+      : { days: 10 };
   const probeLimit = Number(argv.find((arg, index) => argv[index - 1] === "--probe-limit") ?? 500);
   const limitArg = argv.find((arg, index) => argv[index - 1] === "--limit");
   const maxVideos = limitArg ? Number(limitArg) : null;
@@ -246,14 +252,17 @@ export async function runFetch(argv: string[]): Promise<number> {
     argv.find((arg, index) => argv[index - 1] === "--request-delay") ?? 1,
   );
 
+  const windowLabel = "days" in listWindow
+    ? `${listWindow.days} day(s)`
+    : `${listWindow.months} month(s)`;
   console.log(
-    `Listing videos from ${channelUrl} published within the past ${months} month(s) via ${provider.name}...`,
+    `Listing videos from ${channelUrl} published within the past ${windowLabel} via ${provider.name}...`,
   );
 
   let videoIds: Array<[string, Record<string, unknown>]>;
   try {
     videoIds = await provider.listChannelVideosSince(channelUrl, {
-      months,
+      ...listWindow,
       probeLimit,
       maxVideos,
       requestDelay,
@@ -296,7 +305,7 @@ export async function runFetch(argv: string[]): Promise<number> {
       {
         provider: provider.name,
         channel_url: channelUrl,
-        months,
+        ...listWindow,
         video_count: results.length,
         videos: results,
       },

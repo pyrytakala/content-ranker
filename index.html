@@ -3,25 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ranked: AI Engineer talks</title>
+    <title>Ranked: AI Engineer World's Fair 2026 talks</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
     <header class="header">
       <div class="header-copy">
-        <h1>Ranked: AI Engineer talks</h1>
+        <h1>Ranked: AI Engineer World's Fair 2026 talks</h1>
         <div class="meta-wrap">
           <p id="meta" class="meta">Loading…</p>
           <div id="quality-explainer" class="quality-explainer" hidden>
             <p class="quality-explainer-intro">
-              Conference lineups increasingly favor sponsor showcases and polished
-              narratives over hard-won lessons. Plenty of talks restate what you
-              already know, demo a product, or dress marketing up as insight. This
-              list is an attempt to float the ones that still teach something.
+              Conferences are a gift — dozens of speakers, months of prep, all pulled
+              together so the rest of us can learn in a week. Many talks are genuinely
+              excellent.
+            </p>
+            <p class="quality-explainer-intro quality-explainer-intro-note">
+              But lineups have also drifted toward sponsor showcases, and plenty
+              restate common knowledge, demo a product, or dress marketing up as
+              insight. This list tries to surface the talks that would be worth your
+              time.
             </p>
             <p class="quality-explainer-title">How quality is scored</p>
             <p>
-              Each transcript is read and scored by an LLM on five dimensions (0–10):
+              Each video is scored by an LLM on five dimensions (0–10):
               substance, evidence, specificity, insight density, and non-promotion.
             </p>
             <p>
@@ -35,7 +40,13 @@
       </div>
     </header>
 
-    <main id="grid" class="grid" aria-live="polite"></main>
+    <div class="page-main">
+      <div id="grid" class="grid" aria-live="polite"></div>
+      <section id="not-scored-section" class="not-scored-section" hidden>
+        <h2 class="not-scored-title">Not scored</h2>
+        <div id="not-scored-grid" class="grid"></div>
+      </section>
+    </div>
 
     <template id="card-template">
       <article class="card">
@@ -44,6 +55,7 @@
         <div class="score-breakdown" hidden></div>
         <a class="thumb-link" target="_blank" rel="noopener noreferrer">
           <img class="thumb" alt="" loading="lazy" />
+          <span class="duration" hidden></span>
           <div class="thumb-tags tags" hidden></div>
         </a>
         <div class="body">

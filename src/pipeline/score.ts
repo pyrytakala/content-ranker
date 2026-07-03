@@ -8,6 +8,8 @@ import { PROMPT_PATH, SCORES_DIR, INDEX_PATH } from "../lib/paths.js";
 import { extractSpeakers, parseScoreResponse } from "../lib/parse-score.js";
 import { safeFilename, sleep } from "../lib/utils.js";
 import { finalizeRankings, loadVideos, writeRankingsPayload } from "./publish.js";
+import { formatScoringDurationLimit, isTooLongForScoring } from "../lib/scoring-limits.js";
+import { isTooOldForDisplay } from "../lib/video-age.js";
 import type { RankedVideo } from "../lib/types.js";
 
 const FIREWORKS_URL = "https://api.fireworks.ai/inference/v1/chat/completions";
@@ -138,6 +140,30 @@ async function scoreVideoJob(options: {
 
   console.log(`[${options.index}/${options.total}] ${title}`);
 
+  if (isTooLongForScoring(video.duration_seconds)) {
+    console.log(`  -> skipped: longer than ${formatScoringDurationLimit()} scoring limit`);
+    return {
+      id: videoId,
+      title,
+      url: video.url,
+      duration_seconds: video.duration_seconds ?? null,
+      status: "skipped",
+      error: "exceeds scoring duration limit",
+    };
+  }
+
+  if (isTooOldForDisplay(video.upload_date)) {
+    console.log(`  -> skipped: older than 10 day display window`);
+    return {
+      id: videoId,
+      title,
+      url: video.url,
+      upload_date: video.upload_date ?? null,
+      status: "skipped",
+      error: "exceeds video age limit",
+    };
+  }
+
   if (!transcriptPath || !existsSync(transcriptPath)) {
     console.log(`  -> skipped: missing transcript at ${transcriptPath}`);
     return {
@@ -249,6 +275,11 @@ export async function runScore(options: {
     return 1;
   }
 
+  const scorableCount = videos.filter(
+    (video) => !isTooLongForScoring(video.duration_seconds) && !isTooOldForDisplay(video.upload_date),
+  ).length;
+  const skippedCount = videos.length - scorableCount;
+
   mkdirSync(outputDir, { recursive: true });
   const cache = new ApiCache("fireworks");
   const workers = options.workers ?? 4;
@@ -257,7 +288,9 @@ export async function runScore(options: {
   const useCache = options.useCache ?? true;
 
   console.log(
-    `Scoring ${videos.length} talks with ${model} using up to ${workers} workers (adaptive 1-${maxWorkers})...\n`,
+    `Scoring ${scorableCount} talks with ${model} using up to ${workers} workers (adaptive 1-${maxWorkers})...` +
+      (skippedCount ? ` Skipping ${skippedCount} talks over ${formatScoringDurationLimit()}.` : "") +
+      "\n",
   );
 
   const results = await Promise.all(

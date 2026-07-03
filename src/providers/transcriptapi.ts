@@ -2,6 +2,7 @@ import { loadEnv } from "../lib/env.js";
 import { ApiCache, fetchCachedJson } from "../lib/api-cache.js";
 import {
   monthsAgo,
+  daysAgo,
   parseIsoDatetime,
   plainTextFromString,
   uploadDateFromIso,
@@ -151,15 +152,16 @@ export class TranscriptApiProvider implements TranscriptProvider {
     channelUrl: string,
     options: {
       months?: number;
+      days?: number;
       probeLimit?: number;
       maxVideos?: number | null;
       requestDelay?: number;
     } = {},
   ): Promise<Array<[string, Record<string, unknown>]>> {
-    const months = options.months ?? 2;
     const probeLimit = options.probeLimit ?? 500;
     const requestDelay = options.requestDelay ?? 1;
-    const cutoff = monthsAgo(months);
+    const cutoff =
+      options.days != null ? daysAgo(options.days) : monthsAgo(options.months ?? 2);
 
     const publishedMap = new Map<string, Date>();
     for (const item of await this.channelLatest(channelUrl)) {
@@ -225,7 +227,9 @@ export class TranscriptApiProvider implements TranscriptProvider {
       }
     }
 
-    const undatedCap = Math.max(Math.trunc(months * 30), 30);
+    const windowDays =
+      options.days != null ? Math.trunc(options.days) : Math.max(Math.trunc((options.months ?? 2) * 30), 30);
+    const undatedCap = Math.max(windowDays, 30);
     const filtered: Array<[string, Record<string, unknown>]> = [];
     for (const [index, entry] of ordered.entries()) {
       const [videoId, metadata] = entry;

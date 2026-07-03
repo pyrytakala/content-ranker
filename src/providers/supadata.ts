@@ -2,6 +2,7 @@ import { loadEnv } from "../lib/env.js";
 import { ApiCache, fetchCachedJson } from "../lib/api-cache.js";
 import {
   monthsAgo,
+  daysAgo,
   parseIsoDatetime,
   plainTextFromString,
   uploadDateFromIso,
@@ -97,15 +98,16 @@ export class SupadataProvider implements TranscriptProvider {
     channelUrl: string,
     options: {
       months?: number;
+      days?: number;
       probeLimit?: number;
       maxVideos?: number | null;
       requestDelay?: number;
     } = {},
   ): Promise<Array<[string, Record<string, unknown>]>> {
-    const months = options.months ?? 2;
     const probeLimit = options.probeLimit ?? 500;
     const requestDelay = options.requestDelay ?? 1;
-    const cutoff = monthsAgo(months);
+    const cutoff =
+      options.days != null ? daysAgo(options.days) : monthsAgo(options.months ?? 2);
     const candidateIds = await this.listChannelVideos(channelUrl, probeLimit);
 
     const recent: Array<[string, Record<string, unknown>]> = [];

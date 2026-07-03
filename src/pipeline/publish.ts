@@ -3,6 +3,8 @@ import { join } from "node:path";
 
 import { dimensionTags } from "../lib/dimension-tags.js";
 import { applyLikeRankAdjustment, indexVideosById } from "../lib/ranking-adjustments.js";
+import { isTooLongForScoring } from "../lib/scoring-limits.js";
+import { isTooOldForDisplay } from "../lib/video-age.js";
 import {
   INDEX_PATH,
   PROMPT_PATH,
@@ -27,6 +29,19 @@ export function buildRankingsFromScoreFiles(
   const results: RankedVideo[] = [];
 
   for (const video of videos) {
+    if (isTooLongForScoring(video.duration_seconds)) {
+      results.push({
+        id: video.id,
+        title: video.title,
+        url: video.url,
+        duration_seconds: video.duration_seconds ?? null,
+        upload_date: video.upload_date ?? null,
+        status: "skipped",
+        error: "exceeds scoring duration limit",
+      });
+      continue;
+    }
+
     const scorePath = join(outputDir, `${safeFilename(video.title, video.id)}.txt`);
     if (!existsSync(scorePath)) {
       results.push({
@@ -66,20 +81,58 @@ export function finalizeRankings(
   const indexPath = options.indexPath ?? INDEX_PATH;
   const indexPayload = JSON.parse(readFileSync(indexPath, "utf8")) as IndexPayload;
   const indexById = indexVideosById(indexPayload);
-  const ranked = applyLikeRankAdjustment(results, indexById);
+
+  const scorableResults: RankedVideo[] = [];
+  const tooLongResults: RankedVideo[] = [];
+
+  for (const result of results) {
+    const metadata = indexById[result.id] ?? {};
+    const durationSeconds = metadata.duration_seconds ?? result.duration_seconds ?? null;
+    const uploadDate = metadata.upload_date ?? result.upload_date ?? null;
+
+    if (isTooOldForDisplay(uploadDate)) {
+      continue;
+    }
+
+    if (isTooLongForScoring(durationSeconds)) {
+      tooLongResults.push({
+        id: result.id,
+        title: result.title,
+        url: result.url,
+        speakers: result.speakers ?? extractSpeakers(result.title, metadata.description),
+        duration_seconds: durationSeconds,
+        upload_date: metadata.upload_date ?? result.upload_date ?? null,
+        status: "skipped",
+        error: "exceeds scoring duration limit",
+      });
+      continue;
+    }
+
+    if (result.composite != null && result.status === "ok") {
+      scorableResults.push(result);
+    }
+  }
+
+  const ranked = applyLikeRankAdjustment(scorableResults, indexById);
 
   ranked.forEach((result, index) => {
+    const metadata = indexById[result.id] ?? {};
+    result.duration_seconds = metadata.duration_seconds ?? result.duration_seconds ?? null;
     result.rank = index + 1;
     result.tags = dimensionTags(result);
   });
+
+  const rankings = [...ranked, ...tooLongResults];
 
   return {
     model: options.model,
     prompt_path: options.promptPath,
     video_count: results.length,
     ranked_count: ranked.length,
-    rankings: ranked,
-    failures: results.filter((result) => result.status !== "ok"),
+    rankings,
+    failures: results.filter(
+      (result) => result.status !== "ok" && !isTooLongForScoring(result.duration_seconds),
+    ),
   };
 }
 

@@ -43,6 +43,7 @@ export interface RankedVideo {
   like_adjustment?: number;
   like_count?: number | null;
   upload_date?: string | null;
+  duration_seconds?: number | null;
   summary_bullets?: string[];
   substance?: number;
   evidence?: number;

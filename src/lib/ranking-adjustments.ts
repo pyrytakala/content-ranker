@@ -47,6 +47,7 @@ export function applyLikeRankAdjustment(
     const metadata = indexById[result.id] ?? {};
     result.like_count = metadata.like_count ?? null;
     result.upload_date = metadata.upload_date ?? null;
+    result.duration_seconds = metadata.duration_seconds ?? null;
     result.composite_base = result.composite;
     delete result.like_rank;
     delete result.like_adjustment;

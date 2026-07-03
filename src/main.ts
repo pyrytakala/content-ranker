@@ -1,5 +1,7 @@
 import "./styles.css";
 import type { RankedVideo, RankingsPayload, Tag } from "./types";
+import { isTooLongForScoring } from "./lib/scoring-limits.js";
+import { isTooOldForDisplay, parseUploadDate } from "./lib/video-age.js";
 
 const RANKINGS_URL = import.meta.env.DEV
   ? "/api/rankings"
@@ -7,20 +9,6 @@ const RANKINGS_URL = import.meta.env.DEV
 
 function thumbnailUrl(videoId: string): string {
   return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-}
-
-function parseUploadDate(uploadDate: string | null | undefined): Date | null {
-  if (!uploadDate || String(uploadDate).length !== 8) {
-    return null;
-  }
-
-  const value = String(uploadDate);
-  const year = Number(value.slice(0, 4));
-  const month = Number(value.slice(4, 6)) - 1;
-  const day = Number(value.slice(6, 8));
-  const date = new Date(year, month, day);
-
-  return Number.isNaN(date.getTime()) ? null : date;
 }
 
 function formatAbsoluteDate(date: Date): string {
@@ -74,6 +62,7 @@ const SCORE_COMPONENTS = [
 ] as const;
 
 const SCORE_WEIGHT_TOTAL = SCORE_COMPONENTS.reduce((sum, component) => sum + component.weight, 0);
+const NOT_SCORED_TAG_LABEL = "Very long talk, not scored";
 
 function formatWeightPercent(weight: number): string {
   return `${Math.round((weight / SCORE_WEIGHT_TOTAL) * 100)}%`;
@@ -81,6 +70,23 @@ function formatWeightPercent(weight: number): string {
 
 function formatWeightLabel(weight: number): string {
   return `× ${formatWeightPercent(weight)}`;
+}
+
+function formatDuration(seconds: number | null | undefined): string | null {
+  if (seconds == null || seconds <= 0 || Number.isNaN(seconds)) {
+    return null;
+  }
+
+  const total = Math.round(seconds);
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const secs = total % 60;
+
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+  }
+
+  return `${minutes}:${String(secs).padStart(2, "0")}`;
 }
 
 let openScoreCard: HTMLElement | null = null;
@@ -436,6 +442,128 @@ function renderSummary(wrap: HTMLElement, bullets: string[] | undefined): void {
   }
 }
 
+function renderNotScoredTag(container: HTMLElement): void {
+  container.replaceChildren();
+
+  const el = document.createElement("span");
+  el.className = "tag not-scored";
+  el.appendChild(createTagIcon("substance"));
+  const label = document.createElement("span");
+  label.className = "tag-label";
+  label.textContent = NOT_SCORED_TAG_LABEL;
+  el.appendChild(label);
+  container.appendChild(el);
+  container.hidden = false;
+}
+
+function isTooLongForScoringVideo(video: RankedVideo): boolean {
+  return isTooLongForScoring(video.duration_seconds);
+}
+
+function splitRankings(rankings: RankedVideo[]): {
+  scored: RankedVideo[];
+  notScored: RankedVideo[];
+} {
+  const scored: RankedVideo[] = [];
+  const notScored: RankedVideo[] = [];
+
+  for (const video of rankings) {
+    if (isTooLongForScoringVideo(video)) {
+      notScored.push(video);
+    } else {
+      scored.push(video);
+    }
+  }
+
+  return { scored, notScored };
+}
+
+function populateCard(
+  card: HTMLElement,
+  video: RankedVideo,
+  options: {
+    rank?: number;
+    notScored?: boolean;
+    scoreRange?: ReturnType<typeof compositeRange>;
+  },
+): void {
+  const rank = card.querySelector<HTMLElement>(".rank");
+  const duration = card.querySelector<HTMLElement>(".duration");
+  const thumbLink = card.querySelector<HTMLAnchorElement>(".thumb-link");
+  const thumb = card.querySelector<HTMLImageElement>(".thumb");
+  const thumbTags = card.querySelector<HTMLElement>(".thumb-tags");
+  const titleLink = card.querySelector<HTMLAnchorElement>(".title-link");
+  const summaryWrap = card.querySelector<HTMLElement>(".summary-wrap");
+  const published = card.querySelector<HTMLTimeElement>(".published");
+  const score = card.querySelector<HTMLButtonElement>(".score");
+  const scoreBreakdown = card.querySelector<HTMLElement>(".score-breakdown");
+
+  if (
+    !rank ||
+    !thumbLink ||
+    !thumb ||
+    !duration ||
+    !thumbTags ||
+    !titleLink ||
+    !summaryWrap ||
+    !published ||
+    !score ||
+    !scoreBreakdown ||
+    !video.url
+  ) {
+    return;
+  }
+
+  const notScored = options.notScored === true;
+  card.dataset.videoId = video.id;
+  card.classList.toggle("card--not-scored", notScored);
+
+  if (notScored) {
+    rank.hidden = true;
+    score.hidden = true;
+    scoreBreakdown.hidden = true;
+    renderNotScoredTag(thumbTags);
+  } else {
+    rank.hidden = false;
+    score.hidden = false;
+    rank.textContent = `#${options.rank ?? video.rank}`;
+    applyThumbnailEmphasis(thumbLink, video.composite, options.scoreRange ?? null);
+    renderTags(thumbTags, video.tags || [], { tone: "negative" });
+    setupScoreButton(card, score, scoreBreakdown, video);
+  }
+
+  thumb.src = thumbnailUrl(video.id);
+  thumb.alt = video.title;
+  thumbLink.href = video.url;
+
+  const durationLabel = formatDuration(video.duration_seconds);
+  if (durationLabel) {
+    duration.textContent = durationLabel;
+    duration.hidden = false;
+  } else {
+    duration.textContent = "";
+    duration.hidden = true;
+  }
+
+  titleLink.href = video.url;
+  titleLink.title = video.title;
+  titleLink.textContent = video.title;
+
+  renderSummary(summaryWrap, video.summary_bullets);
+  summaryWrap.hidden = !(video.summary_bullets || []).length;
+  setupSummaryInteractions(card, summaryWrap, video.id);
+
+  const uploadDate = parseUploadDate(video.upload_date);
+  if (uploadDate) {
+    published.hidden = false;
+    published.dateTime = video.upload_date ?? "";
+    published.title = formatAbsoluteDate(uploadDate);
+    published.textContent = formatRelativeDate(video.upload_date);
+  } else {
+    published.hidden = true;
+  }
+}
+
 function renderTags(
   container: HTMLElement,
   tags: Tag[],
@@ -474,7 +602,10 @@ function renderMeta(payload: RankingsPayload): void {
     return;
   }
 
-  const count = payload.ranked_count ?? payload.rankings?.length ?? 0;
+  const count =
+    payload.rankings?.filter(
+      (video) => !isTooLongForScoringVideo(video) && !isTooOldForDisplay(video.upload_date),
+    ).length ?? 0;
   meta.replaceChildren();
 
   const prefix = document.createElement("span");
@@ -534,80 +665,58 @@ function applyThumbnailEmphasis(thumbLink: HTMLElement, composite: number | unde
 
 function renderCards(payload: RankingsPayload): void {
   const grid = document.getElementById("grid");
+  const notScoredSection = document.getElementById("not-scored-section");
+  const notScoredGrid = document.getElementById("not-scored-grid");
   const template = document.getElementById("card-template") as HTMLTemplateElement | null;
-  if (!grid || !template) {
+  if (!grid || !notScoredSection || !notScoredGrid || !template) {
     return;
   }
 
   grid.replaceChildren();
+  notScoredGrid.replaceChildren();
 
-  const scoreRange = compositeRange(payload.rankings || []);
+  const { scored, notScored } = splitRankings(
+    (payload.rankings || []).filter((video) => !isTooOldForDisplay(video.upload_date)),
+  );
+  const scoreRange = compositeRange(scored);
 
-  for (const video of payload.rankings || []) {
+  scored.forEach((video, index) => {
     const node = template.content.cloneNode(true) as DocumentFragment;
     const card = node.querySelector<HTMLElement>(".card");
-    const rank = node.querySelector<HTMLElement>(".rank");
-    const thumbLink = node.querySelector<HTMLAnchorElement>(".thumb-link");
-    const thumb = node.querySelector<HTMLImageElement>(".thumb");
-    const thumbTags = node.querySelector<HTMLElement>(".thumb-tags");
-    const titleLink = node.querySelector<HTMLAnchorElement>(".title-link");
-    const summaryWrap = node.querySelector<HTMLElement>(".summary-wrap");
-    const published = node.querySelector<HTMLTimeElement>(".published");
-    const score = node.querySelector<HTMLButtonElement>(".score");
-    const scoreBreakdown = node.querySelector<HTMLElement>(".score-breakdown");
-
-    if (
-      !card ||
-      !rank ||
-      !thumbLink ||
-      !thumb ||
-      !thumbTags ||
-      !titleLink ||
-      !summaryWrap ||
-      !published ||
-      !score ||
-      !scoreBreakdown ||
-      !video.url
-    ) {
-      continue;
+    if (!card) {
+      return;
     }
 
-    card.dataset.videoId = video.id;
-    rank.textContent = `#${video.rank}`;
-    thumb.src = thumbnailUrl(video.id);
-    thumb.alt = video.title;
-    thumbLink.href = video.url;
-    applyThumbnailEmphasis(thumbLink, video.composite, scoreRange);
-    renderTags(thumbTags, video.tags || [], { tone: "negative" });
-    titleLink.href = video.url;
-    titleLink.title = video.title;
-    titleLink.textContent = video.title;
-
-    renderSummary(summaryWrap, video.summary_bullets);
-    summaryWrap.hidden = !(video.summary_bullets || []).length;
-    setupSummaryInteractions(card, summaryWrap, video.id);
-
-    const uploadDate = parseUploadDate(video.upload_date);
-    if (uploadDate) {
-      published.dateTime = video.upload_date ?? "";
-      published.title = formatAbsoluteDate(uploadDate);
-      published.textContent = formatRelativeDate(video.upload_date);
-    } else {
-      published.hidden = true;
-    }
-
-    setupScoreButton(card, score, scoreBreakdown, video);
-
+    populateCard(card, video, { rank: index + 1, scoreRange });
     grid.appendChild(node);
+  });
+
+  if (notScored.length) {
+    notScoredSection.hidden = false;
+    for (const video of notScored) {
+      const node = template.content.cloneNode(true) as DocumentFragment;
+      const card = node.querySelector<HTMLElement>(".card");
+      if (!card) {
+        continue;
+      }
+
+      populateCard(card, video, { notScored: true });
+      notScoredGrid.appendChild(node);
+    }
+  } else {
+    notScoredSection.hidden = true;
   }
 
+  const grids = [grid, notScoredGrid];
   requestAnimationFrame(() => {
     requestAnimationFrame(balanceCardRows);
   });
 
-  for (const img of grid.querySelectorAll<HTMLImageElement>(".thumb")) {
-    if (!img.complete) {
-      img.addEventListener("load", balanceCardRows, { once: true });
+  for (const container of grids) {
+    for (const img of container.querySelectorAll<HTMLImageElement>(".thumb")) {
+      if (!img.complete) {
+        img.addEventListener("load", balanceCardRows, { once: true });
+      }
     }
   }
 }

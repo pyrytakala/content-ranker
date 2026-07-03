@@ -6,6 +6,7 @@ export interface TranscriptProvider {
     channelUrl: string,
     options?: {
       months?: number;
+      days?: number;
       probeLimit?: number;
       maxVideos?: number | null;
       requestDelay?: number;
