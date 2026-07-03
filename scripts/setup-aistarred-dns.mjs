@@ -33,12 +33,6 @@ async function main() {
     console.error(`Domain ${domain} not found in Porkbun account`);
     process.exit(1);
   }
-  if (!entry.apiAccess) {
-    console.error(
-      "Porkbun API access is disabled for this domain. Enable it at https://porkbun.com/account/api (Opt In All Domains or per-domain Details), then re-run this script.",
-    );
-    process.exit(1);
-  }
 
   const current = await porkbun(`/dns/retrieve/${domain}`);
   if (current.status !== "SUCCESS") {
