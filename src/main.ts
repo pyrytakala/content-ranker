@@ -1,8 +1,10 @@
 import "./styles.css";
-import type { RankedVideo, RankingsPayload } from "./types";
+import type { RankedVideo, RankingsPayload, Tag } from "./types";
 import { shouldDisplayVideo } from "./lib/source-filter.js";
 import { parseUploadDate } from "./lib/video-age.js";
 import { isScoredRanking, selectTopPicks } from "./lib/top-picks.js";
+import { isTooLongForScoring } from "./lib/scoring-limits.js";
+import { positiveDimensionTags } from "./lib/dimension-tags.js";
 
 const SOURCE_ID = document.body.dataset.sourceId ?? "ai-engineer-worlds-fair-2026";
 const ITEM_LABEL = document.body.dataset.itemLabel ?? "videos";
@@ -173,7 +175,7 @@ function renderScoreBreakdown(breakdown: HTMLElement, video: RankedVideo): void 
       subtotal += contribution;
       score.textContent = Number(value).toFixed(1);
       weight.textContent = formatWeightLabel(component.weight);
-      product.textContent = `= ${contribution.toFixed(1)}`;
+      product.textContent = `= ${formatScore(contribution)}`;
     }
 
     row.append(label, score, weight, product);
@@ -183,15 +185,16 @@ function renderScoreBreakdown(breakdown: HTMLElement, video: RankedVideo): void 
   const base = video.composite_base ?? video.composite ?? subtotal;
   const total = document.createElement("div");
   total.className = "score-breakdown-total";
-  total.innerHTML = `<span>Total</span><span>${Number(base).toFixed(1)} / 100</span>`;
+  total.innerHTML = `<span>Total</span><span>${formatScore(base)}</span>`;
   breakdown.appendChild(total);
 
   const likeAdjustment = video.like_adjustment;
   if (likeAdjustment != null && Math.abs(Number(likeAdjustment)) > 0.01) {
     const adjust = document.createElement("div");
     adjust.className = "score-breakdown-adjust";
+    const formatted = formatScore(likeAdjustment);
     const sign = Number(likeAdjustment) > 0 ? "+" : "";
-    adjust.innerHTML = `<span>Like adjustment</span><span>${sign}${Number(likeAdjustment).toFixed(1)}</span>`;
+    adjust.innerHTML = `<span>Like adjustment</span><span>${sign}${formatted}</span>`;
     breakdown.appendChild(adjust);
 
     const finalRow = document.createElement("div");
@@ -236,6 +239,58 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+const TAG_ICON_KINDS: Record<string, string> = {
+  "Strong substance": "substance",
+  "Strong evidence": "evidence",
+  "Strong specificity": "specificity",
+  "Strong insight": "insight",
+  "Non-promo": "neutral",
+};
+
+const TAG_ICON_SVGS: Record<string, string> = {
+  substance:
+    '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>',
+  evidence: '<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>',
+  specificity:
+    '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  insight:
+    '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13.5 11H20a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 10.5 14z"/>',
+  neutral:
+    '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+};
+
+function createTagIcon(kind: string): SVGSVGElement {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("aria-hidden", "true");
+  svg.classList.add("tag-icon");
+  svg.innerHTML = TAG_ICON_SVGS[kind] || TAG_ICON_SVGS.substance;
+  return svg;
+}
+
+function positiveTags(video: RankedVideo): Tag[] {
+  const tags = video.tags ?? positiveDimensionTags(video);
+  return tags.filter((tag) => (tag.tone || "positive") === "positive");
+}
+
+function renderTags(container: HTMLElement, tags: Tag[]): void {
+  container.replaceChildren();
+
+  for (const tag of tags) {
+    const kind = TAG_ICON_KINDS[tag.label] || "substance";
+    const el = document.createElement("span");
+    el.className = "tag positive";
+    el.appendChild(createTagIcon(kind));
+    const label = document.createElement("span");
+    label.className = "tag-label";
+    label.textContent = tag.label;
+    el.appendChild(label);
+    container.appendChild(el);
+  }
+
+  container.hidden = container.childElementCount === 0;
+}
+
 function groupCardsByRow(cards: HTMLElement[]): HTMLElement[][] {
   const rows: HTMLElement[][] = [];
   for (const card of cards) {
@@ -251,23 +306,26 @@ function groupCardsByRow(cards: HTMLElement[]): HTMLElement[][] {
 }
 
 function balanceCardRows(): void {
-  const cards = [...document.querySelectorAll<HTMLElement>(".card")];
-  cards.forEach((card) => {
-    card.style.height = "";
-    card.classList.remove("is-measuring");
-  });
+  for (const grid of document.querySelectorAll<HTMLElement>(".grid:not(.grid-excluded)")) {
+    const cards = [...grid.querySelectorAll<HTMLElement>(".card")];
+    cards.forEach((card) => {
+      card.style.height = "";
+      card.classList.remove("is-measuring");
+    });
 
-  const collapsed = cards.filter((card) => !card.classList.contains("is-expanded"));
-  collapsed.forEach((card) => card.classList.add("is-measuring"));
+    const collapsed = cards.filter((card) => !card.classList.contains("is-expanded"));
+    collapsed.forEach((card) => card.classList.add("is-measuring"));
 
-  for (const row of groupCardsByRow(collapsed)) {
-    const tallest = Math.max(...row.map((card) => card.offsetHeight));
-    for (const card of row) {
-      card.style.height = `${tallest}px`;
+    for (const row of groupCardsByRow(collapsed)) {
+      const tallest = Math.max(...row.map((card) => card.offsetHeight));
+      for (const card of row) {
+        card.style.height = `${tallest}px`;
+      }
     }
+
+    collapsed.forEach((card) => card.classList.remove("is-measuring"));
   }
 
-  collapsed.forEach((card) => card.classList.remove("is-measuring"));
   refreshAllSummaryStates();
 }
 
@@ -383,6 +441,136 @@ function renderSummary(wrap: HTMLElement, bullets: string[] | undefined): void {
   }
 }
 
+function populateExcludedCard(card: HTMLElement, video: RankedVideo): void {
+  const duration = card.querySelector<HTMLElement>(".duration");
+  const thumbLink = card.querySelector<HTMLAnchorElement>(".thumb-link");
+  const thumb = card.querySelector<HTMLImageElement>(".thumb");
+  const titleLink = card.querySelector<HTMLAnchorElement>(".title-link");
+  const published = card.querySelector<HTMLTimeElement>(".published");
+
+  if (!thumbLink || !thumb || !duration || !titleLink || !published || !video.url) {
+    return;
+  }
+
+  card.dataset.videoId = video.id;
+
+  thumb.src = thumbnailUrl(video.id);
+  thumb.alt = video.title;
+  thumbLink.href = video.url;
+
+  const durationLabel = formatDuration(video.duration_seconds);
+  if (durationLabel) {
+    duration.textContent = durationLabel;
+    duration.hidden = false;
+  } else {
+    duration.textContent = "";
+    duration.hidden = true;
+  }
+
+  titleLink.href = video.url;
+  titleLink.title = video.title;
+  titleLink.textContent = video.title;
+
+  const uploadDate = parseUploadDate(video.upload_date);
+  if (uploadDate) {
+    published.hidden = false;
+    published.dateTime = video.upload_date ?? "";
+    published.title = formatAbsoluteDate(uploadDate);
+    published.textContent = formatRelativeDate(video.upload_date);
+  } else {
+    published.hidden = true;
+  }
+}
+
+function excludedTalks(payload: RankingsPayload): {
+  tooLong: RankedVideo[];
+  other: RankedVideo[];
+} {
+  const inRange = (videos: RankedVideo[]) =>
+    videos.filter((video) => shouldShowVideo(video.upload_date));
+
+  if (payload.too_long != null || payload.other != null) {
+    return {
+      tooLong: inRange(payload.too_long ?? []),
+      other: inRange(payload.other ?? []),
+    };
+  }
+
+  const visible = inRange(payload.rankings || []);
+  const picks = new Set(visiblePicks(payload).map((video) => video.id));
+  const scored = visible.filter(isScoredRanking);
+  const tooLong = visible.filter((video) => isTooLongForScoring(video.duration_seconds));
+
+  return {
+    tooLong,
+    other: scored.filter((video) => !picks.has(video.id)),
+  };
+}
+
+function renderExcludedSection(
+  container: HTMLElement,
+  heading: string,
+  videos: RankedVideo[],
+  template: HTMLTemplateElement,
+  description?: string,
+): void {
+  if (videos.length === 0) {
+    return;
+  }
+
+  const section = document.createElement("section");
+  section.className = "content-section";
+
+  const title = document.createElement("h2");
+  title.className = "section-heading";
+  title.textContent = heading;
+  section.appendChild(title);
+
+  if (description) {
+    const lede = document.createElement("p");
+    lede.className = "section-lede";
+    lede.textContent = description;
+    section.appendChild(lede);
+  }
+
+  const grid = document.createElement("div");
+  grid.className = "grid grid-excluded";
+
+  for (const video of videos) {
+    const node = template.content.cloneNode(true) as DocumentFragment;
+    const card = node.querySelector<HTMLElement>(".card");
+    if (!card) {
+      continue;
+    }
+    populateExcludedCard(card, video);
+    grid.appendChild(node);
+  }
+
+  section.appendChild(grid);
+  container.appendChild(section);
+}
+
+function renderExcludedSections(payload: RankingsPayload): void {
+  const container = document.getElementById("extra-sections");
+  const template = document.getElementById("excluded-card-template") as HTMLTemplateElement | null;
+  if (!container || !template) {
+    return;
+  }
+
+  container.replaceChildren();
+
+  const { tooLong, other } = excludedTalks(payload);
+
+  renderExcludedSection(container, "Too long talks (not scored)", tooLong, template);
+  renderExcludedSection(
+    container,
+    "Other talks",
+    other,
+    template,
+    "These talks are part of the same group and can be strong too—they just didn't make the top picks this time.",
+  );
+}
+
 function populateCard(
   card: HTMLElement,
   video: RankedVideo,
@@ -394,6 +582,7 @@ function populateCard(
   const duration = card.querySelector<HTMLElement>(".duration");
   const thumbLink = card.querySelector<HTMLAnchorElement>(".thumb-link");
   const thumb = card.querySelector<HTMLImageElement>(".thumb");
+  const thumbTags = card.querySelector<HTMLElement>(".thumb-tags");
   const titleLink = card.querySelector<HTMLAnchorElement>(".title-link");
   const summaryWrap = card.querySelector<HTMLElement>(".summary-wrap");
   const published = card.querySelector<HTMLTimeElement>(".published");
@@ -405,6 +594,7 @@ function populateCard(
     !thumbLink ||
     !thumb ||
     !duration ||
+    !thumbTags ||
     !titleLink ||
     !summaryWrap ||
     !published ||
@@ -417,6 +607,7 @@ function populateCard(
 
   card.dataset.videoId = video.id;
   rank.textContent = `#${options.rank ?? video.rank}`;
+  renderTags(thumbTags, positiveTags(video));
   setupScoreButton(card, score, scoreBreakdown, video);
 
   thumb.src = thumbnailUrl(video.id);
@@ -544,6 +735,7 @@ loadRankings()
   .then((payload) => {
     renderMeta(payload);
     renderCards(payload);
+    renderExcludedSections(payload);
   })
   .catch((error: Error) => {
     const meta = document.getElementById("meta");

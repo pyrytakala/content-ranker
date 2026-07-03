@@ -67,6 +67,8 @@ export interface RankingsPayload {
   scored_count?: number;
   ranked_count?: number;
   rankings: RankedVideo[];
+  too_long?: RankedVideo[];
+  other?: RankedVideo[];
   failures?: RankedVideo[];
 }
 

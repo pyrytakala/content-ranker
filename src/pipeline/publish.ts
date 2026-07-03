@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 import { applyLikeRankAdjustment, indexVideosById } from "../lib/ranking-adjustments.js";
+import { positiveDimensionTags } from "../lib/dimension-tags.js";
 import { isScoredRanking, selectTopPicks } from "../lib/top-picks.js";
 import { isTooLongForScoring } from "../lib/scoring-limits.js";
 import { shouldDisplayVideo } from "../lib/source-filter.js";
@@ -115,6 +116,7 @@ export function finalizeRankings(
     const metadata = indexById[result.id] ?? {};
     result.duration_seconds = metadata.duration_seconds ?? result.duration_seconds ?? null;
     result.rank = index + 1;
+    result.tags = positiveDimensionTags(result);
   });
 
   const rankings = [...ranked, ...tooLongResults];
@@ -139,13 +141,16 @@ export function writeRankingsPayload(payload: RankingsPayload, outputPath: strin
 }
 
 function stripDevFields(video: RankedVideo): RankedVideo {
-  const {
-    score_path: _scorePath,
-    tags: _tags,
-    central_claims: _centralClaims,
-    ...rest
-  } = video;
+  const { score_path: _scorePath, central_claims: _centralClaims, ...rest } = video;
   return rest;
+}
+
+function prepareForPublish(video: RankedVideo): RankedVideo {
+  const stripped = stripDevFields(video);
+  return {
+    ...stripped,
+    tags: stripped.tags ?? positiveDimensionTags(stripped),
+  };
 }
 
 export function sanitizePublishedPayload(
@@ -153,11 +158,20 @@ export function sanitizePublishedPayload(
   source: SourceConfig,
 ): RankingsPayload {
   const scored = payload.rankings.filter(isScoredRanking);
-  const picks = selectTopPicks(scored).map(stripDevFields);
+  const picks = selectTopPicks(scored).map(prepareForPublish);
+  const pickIds = new Set(picks.map((video) => video.id));
 
   picks.forEach((video, index) => {
     video.rank = index + 1;
   });
+
+  const tooLong = payload.rankings
+    .filter((video) => isTooLongForScoring(video.duration_seconds))
+    .map(stripDevFields);
+
+  const other = scored
+    .filter((video) => !pickIds.has(video.id))
+    .map(stripDevFields);
 
   const {
     prompt_path: _promptPath,
@@ -171,6 +185,8 @@ export function sanitizePublishedPayload(
     scored_count: scored.length,
     ranked_count: picks.length,
     rankings: picks,
+    too_long: tooLong,
+    other,
   };
 }
 

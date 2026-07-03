@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Top picks: Latent Space Pod — Q2 2026</title>
+    <title>Latent Space Pod — Q2 2026 talks</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body
@@ -14,18 +14,39 @@
   >
     <header class="header">
       <div class="header-copy">
-        <h1>Top picks: Latent Space Pod — Q2 2026</h1>
+        <h1>Latent Space Pod — Q2 2026 talks</h1>
         <p id="meta" class="meta">Loading…</p>
       </div>
     </header>
 
     <div class="page-main">
-      <div id="grid" class="grid" aria-live="polite"></div>
+      <section class="content-section">
+        <h2 class="section-heading">Top talks</h2>
+        <div id="grid" class="grid" aria-live="polite"></div>
+      </section>
+      <div id="extra-sections"></div>
     </div>
 
     <footer class="page-footer">
       <a href="/how-it-works/">How it works & disclaimer</a>
     </footer>
+
+    <template id="excluded-card-template">
+      <article class="card card-excluded">
+        <a class="thumb-link" target="_blank" rel="noopener noreferrer">
+          <img class="thumb" alt="" loading="lazy" />
+          <div class="thumb-footer">
+            <span class="duration" hidden></span>
+          </div>
+        </a>
+        <div class="body">
+          <div class="talk-heading">
+            <a class="title-link" target="_blank" rel="noopener noreferrer"></a>
+            <time class="published"></time>
+          </div>
+        </div>
+      </article>
+    </template>
 
     <template id="card-template">
       <article class="card">
@@ -34,7 +55,10 @@
         <div class="score-breakdown" hidden></div>
         <a class="thumb-link" target="_blank" rel="noopener noreferrer">
           <img class="thumb" alt="" loading="lazy" />
-          <span class="duration" hidden></span>
+          <div class="thumb-footer">
+            <div class="thumb-tags tags" hidden></div>
+            <span class="duration" hidden></span>
+          </div>
         </a>
         <div class="body">
           <div class="talk-heading">

@@ -3,38 +3,14 @@ import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { IncomingMessage, ServerResponse } from "node:http";
 
-import { buildRankingsFromScoreFiles, finalizeRankings, sanitizePublishedPayload } from "./src/pipeline/publish.js";
-import { sourcePaths } from "./src/lib/paths.js";
-import { getSource, listSources, promptPathForSource } from "./src/lib/sources.js";
-import type { RankingsPayload } from "./src/lib/types.js";
+import { listSources } from "./src/lib/sources.js";
 
-function loadDevRankings(sourceId: string): RankingsPayload {
-  const source = getSource(sourceId);
-  const paths = sourcePaths(sourceId);
-  const promptPath = promptPathForSource(source);
-
-  if (existsSync(paths.rankingsPath)) {
-    const raw = JSON.parse(readFileSync(paths.rankingsPath, "utf8")) as RankingsPayload;
-    return sanitizePublishedPayload(
-      finalizeRankings(raw.rankings ?? [], {
-        model: raw.model,
-        promptPath: raw.prompt_path ?? promptPath,
-        indexPath: paths.indexPath,
-        source,
-      }),
-      source,
-    );
-  }
-
-  const results = buildRankingsFromScoreFiles(paths.indexPath, paths.scoresDir);
-  return sanitizePublishedPayload(
-    finalizeRankings(results, {
-      promptPath,
-      indexPath: paths.indexPath,
-      source,
-    }),
-    source,
-  );
+function rankingsPathForSource(sourceId: string): string | null {
+  const candidates = [
+    resolve(process.cwd(), "public", "data", sourceId, "rankings.json"),
+    resolve(process.cwd(), "scores", sourceId, "rankings.json"),
+  ];
+  return candidates.find((path) => existsSync(path)) ?? null;
 }
 
 function rankingsDevPlugin(): Plugin {
@@ -49,20 +25,21 @@ function rankingsDevPlugin(): Plugin {
             return;
           }
 
-          try {
-            const payload = loadDevRankings(match[1]);
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "application/json; charset=utf-8");
-            res.end(JSON.stringify(payload));
-          } catch (error) {
-            res.statusCode = 500;
+          const rankingsPath = rankingsPathForSource(match[1]);
+          if (!rankingsPath) {
+            res.statusCode = 404;
             res.setHeader("Content-Type", "application/json; charset=utf-8");
             res.end(
               JSON.stringify({
-                error: error instanceof Error ? error.message : String(error),
+                error: `No rankings found for "${match[1]}". Run npm run publish.`,
               }),
             );
+            return;
           }
+
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json; charset=utf-8");
+          res.end(readFileSync(rankingsPath, "utf8"));
         },
       );
     },
@@ -83,6 +60,10 @@ const pageEntries = Object.fromEntries(
 export default defineConfig({
   base: process.env.VITE_BASE_PATH || "/",
   plugins: [rankingsDevPlugin()],
+  server: {
+    port: 5173,
+    strictPort: false,
+  },
   build: {
     outDir: "dist",
     emptyOutDir: true,
