@@ -9,10 +9,28 @@ const requestDelay = process.argv.includes("--request-delay")
   ? process.argv[process.argv.indexOf("--request-delay") + 1] ?? "0.3"
   : "0.3";
 
+const fromSource = process.argv.includes("--from")
+  ? process.argv[process.argv.indexOf("--from") + 1]
+  : null;
+
+const skipSources = new Set(
+  process.argv.includes("--skip")
+    ? process.argv.slice(process.argv.indexOf("--skip") + 1).filter((arg) => !arg.startsWith("--"))
+    : ["paul-graham-essays-2020s"],
+);
+
 const logDir = join(process.cwd(), "logs", "fetch");
 mkdirSync(logDir, { recursive: true });
 
-const sources = listSources();
+let sources = listSources().filter((source) => !skipSources.has(source.id));
+if (fromSource) {
+  const startIndex = sources.findIndex((source) => source.id === fromSource);
+  if (startIndex < 0) {
+    console.error(`Unknown --from source "${fromSource}"`);
+    process.exit(1);
+  }
+  sources = sources.slice(startIndex);
+}
 const summary: Array<{ id: string; code: number }> = [];
 
 for (const source of sources) {

@@ -11,134 +11,173 @@
       "period": "Jun 2026",
       "location": "San Francisco",
       "maxDisplayAgeDays": 10,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 35
     },
     {
       "id": "latent-space-pod-q2-2026",
       "slug": "latent-space-pod-q2-2026",
-      "title": "Latent Space Pod — Q2 2026",
-      "pageTitle": "Latent Space Pod — Q2 2026 episodes",
+      "title": "Latent Space Pod — 2026",
+      "pageTitle": "Latent Space Pod — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/latent-space-pod.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 34
     },
     {
       "id": "no-priors-pod-q2-2026",
       "slug": "no-priors-pod-q2-2026",
-      "title": "No Priors Pod — Q2 2026",
-      "pageTitle": "No Priors Pod — Q2 2026 episodes",
+      "title": "No Priors Pod — 2026",
+      "pageTitle": "No Priors Pod — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/no-priors-pod.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups",
+        "ai-ml"
+      ],
       "rankedCount": 13
     },
     {
       "id": "twiml-ai-pod-q2-2026",
       "slug": "twiml-ai-pod-q2-2026",
-      "title": "The TWIML AI Podcast — Q2 2026",
-      "pageTitle": "The TWIML AI Podcast — Q2 2026 episodes",
+      "title": "The TWIML AI Podcast — 2026",
+      "pageTitle": "The TWIML AI Podcast — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/twiml-ai-pod.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 8
     },
     {
       "id": "cognitive-revolution-pod-q2-2026",
       "slug": "cognitive-revolution-pod-q2-2026",
-      "title": "The Cognitive Revolution Podcast — Q2 2026",
-      "pageTitle": "The Cognitive Revolution Podcast — Q2 2026 episodes",
+      "title": "The Cognitive Revolution Podcast — 2026",
+      "pageTitle": "The Cognitive Revolution Podcast — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/cognitive-revolution-pod.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 23
     },
     {
       "id": "nvidia-q2-2026",
       "slug": "nvidia-q2-2026",
-      "title": "NVIDIA — Q2 2026",
-      "pageTitle": "NVIDIA — Q2 2026 videos",
+      "title": "NVIDIA — 2026",
+      "pageTitle": "NVIDIA — 2026 videos",
       "contentKind": "channel",
       "itemLabel": "videos",
       "coverImage": "/images/covers/nvidia.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "industry",
+      "categories": [
+        "industry",
+        "ai-ml"
+      ],
       "rankedCount": 20
     },
     {
       "id": "a16z-q2-2026",
       "slug": "a16z-q2-2026",
-      "title": "a16z — Q2 2026",
-      "pageTitle": "a16z — Q2 2026 episodes",
+      "title": "a16z — 2026",
+      "pageTitle": "a16z — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/a16z.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups",
+        "finance"
+      ],
       "rankedCount": 23
     },
     {
       "id": "ml-street-talk-q2-2026",
       "slug": "ml-street-talk-q2-2026",
-      "title": "Machine Learning Street Talk — H1 2026",
-      "pageTitle": "Machine Learning Street Talk — H1 2026 episodes",
+      "title": "Machine Learning Street Talk — 2026",
+      "pageTitle": "Machine Learning Street Talk — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/ml-street-talk.png",
-      "period": "Jan–Jun 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 10
     },
     {
       "id": "huberman-lab-h1-2026",
       "slug": "huberman-lab-h1-2026",
-      "title": "Huberman Lab — H1 2026",
-      "pageTitle": "Huberman Lab — H1 2026 episodes",
+      "title": "Huberman Lab — 2026",
+      "pageTitle": "Huberman Lab — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/huberman-lab.png",
-      "period": "Jan–Jun 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "science-health",
+      "categories": [
+        "science-health"
+      ],
       "rankedCount": 49
     },
     {
@@ -155,6 +194,10 @@
         "until": "20291231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 1
     },
     {
@@ -171,6 +214,11 @@
         "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml",
+        "software"
+      ],
       "rankedCount": 3
     },
     {
@@ -187,6 +235,10 @@
         "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "science-health",
+      "categories": [
+        "science-health"
+      ],
       "rankedCount": 18
     },
     {
@@ -197,12 +249,17 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/simon-willison.png",
-      "period": "H1 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml",
+        "software"
+      ],
       "rankedCount": 1
     },
     {
@@ -213,12 +270,16 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/anthropic-engineering.png",
-      "period": "H1 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 9
     },
     {
@@ -229,12 +290,16 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/openai-developer-blog.png",
-      "period": "H1 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 12
     },
     {
@@ -245,12 +310,16 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/stratechery.png",
-      "period": "H1 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 1
     },
     {
@@ -261,12 +330,16 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/import-ai.png",
-      "period": "H1 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 20
     },
     {
@@ -277,12 +350,16 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/hamel-dev.png",
-      "period": "H1 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 4
     },
     {
@@ -293,12 +370,16 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/machine-theory.png",
-      "period": "H1 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 0
     },
     {
@@ -309,13 +390,18 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/semianalysis.png",
-      "period": "Q2 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
-      "rankedCount": 0
+      "primaryCategory": "industry",
+      "categories": [
+        "industry",
+        "finance"
+      ],
+      "rankedCount": 18
     },
     {
       "id": "bens-bites-q2-2026",
@@ -325,12 +411,16 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/bens-bites.png",
-      "period": "Q2 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "ai-ml",
+      "categories": [
+        "ai-ml"
+      ],
       "rankedCount": 19
     },
     {
@@ -347,6 +437,10 @@
         "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "software",
+      "categories": [
+        "software"
+      ],
       "rankedCount": 12
     },
     {
@@ -357,12 +451,16 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/construction-physics.png",
-      "period": "Q2 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "industry",
+      "categories": [
+        "industry"
+      ],
       "rankedCount": 12
     },
     {
@@ -373,76 +471,96 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/asterisk.png",
-      "period": "Issue 14 (latest 5)",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "science-health",
+      "categories": [
+        "science-health"
+      ],
       "rankedCount": 5
     },
     {
       "id": "odd-lots-q2-2026",
       "slug": "odd-lots-q2-2026",
-      "title": "Odd Lots — Q2 2026",
-      "pageTitle": "Odd Lots — Q2 2026 episodes",
+      "title": "Odd Lots — 2026",
+      "pageTitle": "Odd Lots — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/odd-lots.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "finance",
+      "categories": [
+        "finance"
+      ],
       "rankedCount": 25
     },
     {
       "id": "yc-startup-pod-q2-2026",
       "slug": "yc-startup-pod-q2-2026",
-      "title": "YC Startup Podcast — Q2 2026",
-      "pageTitle": "YC Startup Podcast — Q2 2026 episodes",
+      "title": "YC Startup Podcast — 2026",
+      "pageTitle": "YC Startup Podcast — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/y-combinator.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 30
     },
     {
       "id": "my-first-million-q2-2026",
       "slug": "my-first-million-q2-2026",
-      "title": "My First Million — Q2 2026",
-      "pageTitle": "My First Million — Q2 2026 episodes",
+      "title": "My First Million — 2026",
+      "pageTitle": "My First Million — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/my-first-million.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 24
     },
     {
       "id": "pmf-show-q2-2026",
       "slug": "pmf-show-q2-2026",
-      "title": "The PMF Show — Q2 2026",
-      "pageTitle": "The PMF Show — Q2 2026 episodes",
+      "title": "The PMF Show — 2026",
+      "pageTitle": "The PMF Show — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/pmf-show.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 20
     },
     {
@@ -453,28 +571,36 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/how-i-built-this.png",
-      "period": "Q2 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 0
     },
     {
       "id": "lennys-podcast-q2-2026",
       "slug": "lennys-podcast-q2-2026",
-      "title": "Lenny's Podcast — Q2 2026",
-      "pageTitle": "Lenny's Podcast — Q2 2026 episodes",
+      "title": "Lenny's Podcast — 2026",
+      "pageTitle": "Lenny's Podcast — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/lennys-podcast.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 15
     },
     {
@@ -485,92 +611,117 @@
       "contentKind": "essay",
       "itemLabel": "posts",
       "coverImage": "/images/covers/nateliason.png",
-      "period": "H1 2026",
+      "period": "2026",
       "dateRange": {
         "since": "20260101",
-        "until": "20260630"
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 0
     },
     {
       "id": "founders-podcast-q2-2026",
       "slug": "founders-podcast-q2-2026",
-      "title": "Founders Podcast — Q2 2026",
-      "pageTitle": "Founders Podcast — Q2 2026 episodes",
+      "title": "Founders Podcast — 2026",
+      "pageTitle": "Founders Podcast — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/founders-podcast.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 7
     },
     {
       "id": "peter-attia-q2-2026",
       "slug": "peter-attia-q2-2026",
-      "title": "Peter Attia MD — Q2 2026",
-      "pageTitle": "Peter Attia MD — Q2 2026 episodes",
+      "title": "Peter Attia MD — 2026",
+      "pageTitle": "Peter Attia MD — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/peter-attia.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "science-health",
+      "categories": [
+        "science-health"
+      ],
       "rankedCount": 3
     },
     {
       "id": "modern-wisdom-q2-2026",
       "slug": "modern-wisdom-q2-2026",
-      "title": "Modern Wisdom — Q2 2026",
-      "pageTitle": "Modern Wisdom — Q2 2026 episodes",
+      "title": "Modern Wisdom — 2026",
+      "pageTitle": "Modern Wisdom — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/modern-wisdom.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "science-health",
+      "categories": [
+        "science-health"
+      ],
       "rankedCount": 29
     },
     {
       "id": "greg-isenberg-q2-2026",
       "slug": "greg-isenberg-q2-2026",
-      "title": "Greg Isenberg — Q2 2026",
-      "pageTitle": "Greg Isenberg — Q2 2026 videos",
+      "title": "Greg Isenberg — 2026",
+      "pageTitle": "Greg Isenberg — 2026 videos",
       "contentKind": "channel",
       "itemLabel": "videos",
       "coverImage": "/images/covers/greg-isenberg.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "startups",
+      "categories": [
+        "startups"
+      ],
       "rankedCount": 22
     },
     {
       "id": "iltb-podcast-q2-2026",
       "slug": "iltb-podcast-q2-2026",
-      "title": "Invest Like the Best — Q2 2026",
-      "pageTitle": "Invest Like the Best — Q2 2026 episodes",
+      "title": "Invest Like the Best — 2026",
+      "pageTitle": "Invest Like the Best — 2026 episodes",
       "contentKind": "podcast",
       "itemLabel": "videos",
       "coverImage": "/images/covers/iltb-podcast.png",
-      "period": "Apr–Jun 2026",
+      "period": "2026",
       "dateRange": {
-        "since": "20260401",
-        "until": "20260630"
+        "since": "20260101",
+        "until": "20261231"
       },
       "maxDisplayAgeDays": null,
+      "primaryCategory": "finance",
+      "categories": [
+        "finance",
+        "startups"
+      ],
       "rankedCount": 15
     }
   ]

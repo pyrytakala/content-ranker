@@ -72,12 +72,19 @@ function audienceLevelFilterSummary(selected: Set<AudienceLevel>) {
   const singleLevel =
     selected.size === 1 ? AUDIENCE_LEVEL_FILTER_OPTIONS.find((level) => selected.has(level)) : null;
 
+  const singleOnlyLabels: Record<AudienceLevel, string> = {
+    general: "General only",
+    practitioner: "Informed only",
+    professional: "Practitioners only",
+    specialist: "Specialists only",
+  };
+
   return multiSelectFilterSummary({
     label: "Level",
     total,
     selected: selected.size,
     allValue: "All levels",
-    singleValue: singleLevel ? `${AUDIENCE_LEVEL_LABELS[singleLevel]} only` : undefined,
+    singleValue: singleLevel ? singleOnlyLabels[singleLevel] : undefined,
     partialValue: `${selected.size}/${total} levels`,
   });
 }

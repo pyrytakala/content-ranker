@@ -35,14 +35,14 @@ Show the arithmetic.
 
 Step 5 — Confidence (High/Med/Low): lower it if {confidence_caveat}. Note WHY in one phrase.
 
-Step 6 — Audience level: Classify who can follow this without feeling lost. Pick exactly ONE label:
+Step 6 — Audience level: Who can follow without feeling lost? Pick exactly ONE label. These form a ladder — pick the lowest level that would still follow comfortably:
 
-- General — Accessible to a curious general audience. The topic may touch a field but does not require prior study (e.g. a human-interest angle, well-explained overview).
-- Practitioner — Assumes baseline literacy in the field (e.g. undergrad CS, intro ML). {audience_unfamiliar}
-- Professional — Assumes active professional practice in the field ({audience_example}). Hard for informed outsiders to follow.
-- Specialist — Assumes deep subfield expertise (e.g. two infra engineers debating kernel schedulers; researchers in the same narrow area talking shop).
+- General — Curious general audience. May touch a technical field but explains ideas accessibly; no prior study assumed.
+- Practitioner — Field-aware reader with introductory literacy (e.g. undergrad CS, intro ML). Smart outsiders can follow; jargon is mostly explained.
+- Professional — Working practitioners in the field ({audience_example}). Assumes day-to-day job context, not just classroom familiarity. Informed outsiders will often feel lost.
+- Specialist — Peers in a narrow subfield. Assumes you already work in this exact niche; dense unexplained jargon and implicit context are normal. Not just "advanced" — the audience is a small expert in-group (e.g. process-node teardowns, compiler backends, niche infra tradeoffs).
 
-Give one short phrase explaining what background is assumed. Do NOT conflate "advanced topic" with level — cutting-edge work can still be General if explained well.
+Do NOT conflate "advanced topic" with level — cutting-edge work explained well can still be General. Prefer Specialist over Professional when the piece reads like insider talk within a narrow specialty, not merely "hard for outsiders."
 
 Output exactly:
 - Summary bullets:

@@ -24,6 +24,8 @@ export interface ContentFetchContext {
   requestDelayMs: number;
   maxItems?: number | null;
   urlIncludes?: string;
+  /** Slug/id → upload_date from a prior index (skips re-probing during listing). */
+  knownUploadDates?: Record<string, string | null>;
 }
 
 export interface ContentFetcher {

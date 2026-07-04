@@ -154,6 +154,7 @@ export function closeScoreBreakdown(): void {
   if (breakdown) {
     breakdown.hidden = true;
   }
+  openScoreCard.classList.remove("card--score-open");
   openScoreCard = null;
 }
 
@@ -169,6 +170,7 @@ function toggleScoreBreakdown(
   const opening = breakdown.hidden;
   breakdown.hidden = !opening;
   scoreBtn.setAttribute("aria-expanded", opening ? "true" : "false");
+  card.classList.toggle("card--score-open", opening);
   openScoreCard = opening ? card : null;
 }
 
@@ -335,12 +337,14 @@ function renderTags(container: HTMLElement, tags: Tag[]): void {
 
   for (const tag of tags) {
     const kind = tagIconKind(tag.label);
+    const displayLabel = tagDisplayLabel(tag.label);
     const el = document.createElement("span");
     el.className = "tag positive";
+    el.setAttribute("aria-label", displayLabel);
     el.appendChild(createTagIcon(kind));
     const label = document.createElement("span");
     label.className = "tag-label";
-    label.textContent = tagDisplayLabel(tag.label);
+    label.textContent = displayLabel;
     el.appendChild(label);
     container.appendChild(el);
   }

@@ -1,5 +1,6 @@
 import { CONTENT_KIND_LABELS } from "./content-kind.js";
 import type { SourceConfig } from "./sources-config.js";
+import { categoriesForSource, primaryCategoryForSource, type SourceCategoryId } from "./source-categories.js";
 
 export interface PublicSource {
   id: string;
@@ -14,6 +15,8 @@ export interface PublicSource {
   dateRange?: SourceConfig["dateRange"];
   maxDisplayAgeDays: number | null;
   rankedCount?: number;
+  primaryCategory: SourceCategoryId;
+  categories: SourceCategoryId[];
 }
 
 export interface SourcesManifest {
@@ -33,6 +36,8 @@ export function toPublicSource(source: SourceConfig): PublicSource {
     location: source.location,
     dateRange: source.dateRange,
     maxDisplayAgeDays: source.maxDisplayAgeDays,
+    primaryCategory: primaryCategoryForSource(source.id),
+    categories: categoriesForSource(source.id),
   };
 }
 

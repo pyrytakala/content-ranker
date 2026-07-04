@@ -297,3 +297,205 @@ export function mountMultiSelectDropdown(
 
   return handle;
 }
+
+export interface GroupedMultiSelectGroup {
+  id: string;
+  label: string;
+  memberValues: string[];
+}
+
+export interface GroupedMultiSelectLeaf {
+  value: string;
+  label: string;
+  groupId: string;
+}
+
+function syncGroupCheckbox(
+  checkbox: HTMLInputElement,
+  selected: Set<string>,
+  memberValues: string[],
+): void {
+  if (memberValues.length === 0) {
+    checkbox.checked = false;
+    checkbox.indeterminate = false;
+    return;
+  }
+
+  let count = 0;
+  for (const value of memberValues) {
+    if (selected.has(value)) {
+      count += 1;
+    }
+  }
+
+  checkbox.checked = count === memberValues.length;
+  checkbox.indeterminate = count > 0 && count < memberValues.length;
+}
+
+function createMultiSelectRow(
+  value: string,
+  label: string,
+  selected: Set<string>,
+  className: string,
+  onToggle: (checked: boolean) => void,
+): HTMLLabelElement {
+  const row = document.createElement("label");
+  row.className = className;
+  row.dataset.filterValue = value;
+  row.setAttribute("role", "option");
+  const isSelected = selected.has(value);
+  row.classList.toggle("is-selected", isSelected);
+  row.setAttribute("aria-selected", isSelected ? "true" : "false");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = isSelected;
+  checkbox.addEventListener("change", (event) => {
+    event.stopPropagation();
+    onToggle(checkbox.checked);
+  });
+  row.appendChild(checkbox);
+
+  const text = document.createElement("span");
+  text.className = "filter-dropdown-option-label";
+  text.textContent = label;
+  row.appendChild(text);
+
+  return row;
+}
+
+export function mountGroupedMultiSelectDropdown(
+  container: HTMLElement,
+  config: {
+    ariaLabel: string;
+    summary: FilterDropdownSummary;
+    panelClassName?: string;
+    groups: GroupedMultiSelectGroup[];
+    leaves: GroupedMultiSelectLeaf[];
+    selectedValues: Set<string>;
+    onChange: (selected: Set<string>) => void;
+    bulkActions?: {
+      selectAllLabel?: string;
+      clearAllLabel?: string;
+    };
+  },
+): FilterDropdownHandle {
+  let selected = new Set(config.selectedValues);
+  const { list, handle, panel } = createDropdownShell(container, config.ariaLabel, config.summary);
+  if (config.panelClassName) {
+    panel.classList.add(config.panelClassName);
+  }
+  list.setAttribute("aria-multiselectable", "true");
+
+  const allValues = config.leaves.map((leaf) => leaf.value);
+  const groupCheckboxes = new Map<string, HTMLInputElement>();
+  const leavesByGroup = new Map<string, GroupedMultiSelectLeaf[]>();
+  for (const leaf of config.leaves) {
+    const bucket = leavesByGroup.get(leaf.groupId) ?? [];
+    bucket.push(leaf);
+    leavesByGroup.set(leaf.groupId, bucket);
+  }
+
+  const applySelection = (next: Set<string>): void => {
+    selected = next;
+    config.onChange(next);
+    handle.updateSelection(selected);
+  };
+
+  const syncAllGroupCheckboxes = (): void => {
+    for (const group of config.groups) {
+      const checkbox = groupCheckboxes.get(group.id);
+      if (!checkbox) {
+        continue;
+      }
+      syncGroupCheckbox(checkbox, selected, group.memberValues);
+      const header = checkbox.closest<HTMLElement>(".filter-dropdown-option");
+      if (header) {
+        header.classList.toggle("is-selected", checkbox.checked);
+        header.setAttribute("aria-selected", checkbox.checked ? "true" : "false");
+      }
+    }
+  };
+
+  const originalUpdateSelection = handle.updateSelection.bind(handle);
+  handle.updateSelection = (selectedValues: Set<string>) => {
+    originalUpdateSelection(selectedValues);
+    syncAllGroupCheckboxes();
+  };
+
+  if (config.bulkActions) {
+    const bulkBar = document.createElement("div");
+    bulkBar.className = "filter-dropdown-bulk-actions";
+
+    const selectAll = document.createElement("button");
+    selectAll.type = "button";
+    selectAll.className = "filter-dropdown-bulk-action";
+    selectAll.textContent = config.bulkActions.selectAllLabel ?? "Select all";
+    selectAll.addEventListener("click", (event) => {
+      event.stopPropagation();
+      applySelection(new Set(allValues));
+    });
+
+    const clearAll = document.createElement("button");
+    clearAll.type = "button";
+    clearAll.className = "filter-dropdown-bulk-action";
+    clearAll.textContent = config.bulkActions.clearAllLabel ?? "Clear all";
+    clearAll.addEventListener("click", (event) => {
+      event.stopPropagation();
+      applySelection(new Set());
+    });
+
+    bulkBar.append(selectAll, clearAll);
+    panel.insertBefore(bulkBar, list);
+  }
+
+  for (const group of config.groups) {
+    const groupValue = `__group__:${group.id}`;
+    const header = createMultiSelectRow(
+      groupValue,
+      group.label,
+      selected,
+      "filter-dropdown-option filter-dropdown-option--multi filter-dropdown-option--group",
+      (checked) => {
+        const next = new Set(selected);
+        for (const value of group.memberValues) {
+          if (checked) {
+            next.add(value);
+          } else {
+            next.delete(value);
+          }
+        }
+        applySelection(next);
+      },
+    );
+    const groupCheckbox = header.querySelector("input");
+    if (groupCheckbox instanceof HTMLInputElement) {
+      groupCheckboxes.set(group.id, groupCheckbox);
+      syncGroupCheckbox(groupCheckbox, selected, group.memberValues);
+    }
+    list.appendChild(header);
+
+    const leaves = leavesByGroup.get(group.id) ?? [];
+    for (const leaf of leaves) {
+      const row = createMultiSelectRow(
+        leaf.value,
+        leaf.label,
+        selected,
+        "filter-dropdown-option filter-dropdown-option--multi filter-dropdown-option--nested",
+        (checked) => {
+          const next = new Set(selected);
+          if (checked) {
+            next.add(leaf.value);
+          } else {
+            next.delete(leaf.value);
+          }
+          applySelection(next);
+        },
+      );
+      list.appendChild(row);
+    }
+  }
+
+  syncAllGroupCheckboxes();
+  return handle;
+}

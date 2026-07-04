@@ -1,9 +1,16 @@
 import {
-  mountMultiSelectDropdown,
+  mountGroupedMultiSelectDropdown,
   type FilterDropdownHandle,
+  type GroupedMultiSelectGroup,
+  type GroupedMultiSelectLeaf,
 } from "./filter-dropdown.js";
 import { filterSummary, multiSelectFilterSummary } from "./filter-summary.js";
 import type { PublicSource } from "./public-source.js";
+import {
+  primaryCategoryForSource,
+  SOURCE_CATEGORIES,
+  sourcesInCategory,
+} from "./source-categories.js";
 
 const SOURCE_PARAM = "source";
 
@@ -67,6 +74,29 @@ function sourceFilterSummary(sources: PublicSource[], selected: Set<string>) {
     }
   }
 
+  const fullySelectedCategories = SOURCE_CATEGORIES.filter((category) => {
+    const members = sourcesInCategory(
+      sorted.map((source) => source.id),
+      category.id,
+    ).map((id) => sorted.find((source) => source.id === id)?.slug ?? id);
+    return members.length > 0 && members.every((slug) => selected.has(slug));
+  });
+
+  if (fullySelectedCategories.length === 1) {
+    const category = fullySelectedCategories[0];
+    const memberSlugs = sourcesInCategory(
+      sorted.map((source) => source.id),
+      category.id,
+    ).map((id) => sorted.find((source) => source.id === id)?.slug ?? id);
+    const onlyCategory =
+      memberSlugs.length > 0 &&
+      selected.size === memberSlugs.length &&
+      memberSlugs.every((slug) => selected.has(slug));
+    if (onlyCategory) {
+      return filterSummary("Sources", category.label, true);
+    }
+  }
+
   return multiSelectFilterSummary({
     label: "Sources",
     total,
@@ -74,6 +104,45 @@ function sourceFilterSummary(sources: PublicSource[], selected: Set<string>) {
     allValue: "All sources",
     partialValue: `${selected.size} sources selected`,
   });
+}
+
+function sourceOptionLabel(source: PublicSource): string {
+  if (source.rankedCount == null) {
+    return source.title;
+  }
+  return `${source.title} (${source.rankedCount})`;
+}
+
+function buildGroupedOptions(sources: PublicSource[]): {
+  groups: GroupedMultiSelectGroup[];
+  leaves: GroupedMultiSelectLeaf[];
+} {
+  const sorted = sortedSources(sources);
+  const sourceIds = sorted.map((source) => source.id);
+  const groups: GroupedMultiSelectGroup[] = SOURCE_CATEGORIES.map((category) => ({
+    id: category.id,
+    label: category.label,
+    memberValues: sourcesInCategory(sourceIds, category.id).map(
+      (id) => sorted.find((source) => source.id === id)?.slug ?? id,
+    ),
+  })).filter((group) => group.memberValues.length > 0);
+
+  const leaves: GroupedMultiSelectLeaf[] = [];
+  for (const category of SOURCE_CATEGORIES) {
+    for (const source of sorted) {
+      const primary = source.primaryCategory ?? primaryCategoryForSource(source.id);
+      if (primary !== category.id) {
+        continue;
+      }
+      leaves.push({
+        value: source.slug,
+        label: sourceOptionLabel(source),
+        groupId: category.id,
+      });
+    }
+  }
+
+  return { groups, leaves };
 }
 
 let sourceDropdownHandle: FilterDropdownHandle | null = null;
@@ -85,15 +154,17 @@ export function mountFeedSourceFilter(
   onChange: (selected: Set<string>) => void,
 ): void {
   const sorted = sortedSources(sources);
+  const { groups, leaves } = buildGroupedOptions(sorted);
+  container.classList.add("filter-dropdown-wrap--sources");
 
-  sourceDropdownHandle = mountMultiSelectDropdown(container, {
+  sourceDropdownHandle = mountGroupedMultiSelectDropdown(container, {
     ariaLabel: "Filter by source",
     summary: sourceFilterSummary(sorted, selected),
-    options: sorted.map((source) => ({
-      value: source.slug,
-      label: source.title,
-    })),
+    panelClassName: "filter-dropdown-panel--wide",
+    groups,
+    leaves,
     selectedValues: new Set(selected),
+    bulkActions: {},
     onChange: (next) => {
       const selected = new Set([...next].filter((slug) => sorted.some((source) => source.slug === slug)));
       writeFeedSourceFilter(selected, sorted);

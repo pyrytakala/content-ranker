@@ -284,6 +284,9 @@ async function runEssayFetch(
     requestDelayMs: requestDelay * 1000,
     maxItems,
     urlIncludes: source.essayUrlIncludes,
+    knownUploadDates: Object.fromEntries(
+      [...existingById.entries()].map(([id, entry]) => [id, entry.upload_date ?? null]),
+    ),
   };
 
   let items;

@@ -129,9 +129,10 @@ export function extractEssayBody(html: string): string {
   return lines.slice(Math.max(bodyStart, 0)).join("\n\n").trim();
 }
 
-async function fetchText(url: string): Promise<string> {
+async function fetchText(url: string, timeoutMs = 30_000): Promise<string> {
   const response = await fetch(url, {
     headers: { "User-Agent": USER_AGENT },
+    signal: AbortSignal.timeout(timeoutMs),
   });
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} for ${url}`);
@@ -159,22 +160,39 @@ export const paulGrahamFetcher: ContentFetcher = {
 
     const links = listEssayLinks(catalogHtml);
     const items: ContentListItem[] = [];
+    const knownDates = context.knownUploadDates ?? {};
+    let nullDateStreak = 0;
+    const maxProbeLinks = 40;
 
     for (const [index, link] of links.entries()) {
-      if (context.requestDelayMs > 0 && index > 0) {
+      const isKnown = link.id in knownDates;
+      if (index >= maxProbeLinks && !isKnown) {
+        continue;
+      }
+
+      if (context.requestDelayMs > 0 && index > 0 && !isKnown) {
         await sleep(context.requestDelayMs);
       }
 
-      const uploadDate = await withPipelineTiming(
-        "essay-fetch",
-        "probe-date",
-        { sourceId: context.sourceId, essayId: link.id, url: link.url },
-        () => probeEssayDate(link.url),
-      );
+      let uploadDate = knownDates[link.id] ?? null;
+      if (!uploadDate) {
+        uploadDate = await withPipelineTiming(
+          "essay-fetch",
+          "probe-date",
+          { sourceId: context.sourceId, essayId: link.id, url: link.url },
+          () => probeEssayDate(link.url),
+        );
+      }
 
       if (!uploadDate) {
+        nullDateStreak += 1;
+        if (items.length > 0 && nullDateStreak >= 5) {
+          break;
+        }
         continue;
       }
+
+      nullDateStreak = 0;
 
       if (context.dateRange && uploadDate < context.dateRange.since) {
         break;

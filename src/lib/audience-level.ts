@@ -4,8 +4,8 @@ export type AudienceLevel = (typeof AUDIENCE_LEVELS)[number];
 
 export const AUDIENCE_LEVEL_LABELS: Record<AudienceLevel, string> = {
   general: "General",
-  practitioner: "Practitioner",
-  professional: "Professional",
+  practitioner: "Informed",
+  professional: "Practitioner",
   specialist: "Specialist",
 };
 
@@ -48,7 +48,7 @@ export function audienceLevelLabel(level: AudienceLevel | string | null | undefi
 /** Shown on hover over any audience-level badge. One level per line. */
 export const AUDIENCE_LEVEL_SCALE_HINT = [
   "General — no prior knowledge needed",
-  "Practitioner — needs field basics",
-  "Professional — for working practitioners",
-  "Specialist — subfield experts only",
+  "Informed — understands field basics",
+  "Practitioner — works in the field daily",
+  "Specialist — narrow subfield experts only",
 ].join("\n");
