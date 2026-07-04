@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import type { IncomingMessage, ServerResponse } from "node:http";
 
 import { listSources } from "./src/lib/sources.js";
+import { readRankingsPayloadForSource } from "./src/lib/preview-rankings.js";
 
 function rankingsPathForSource(sourceId: string): string | null {
   const candidates = [
@@ -73,20 +74,29 @@ function rankingsDevPlugin(): Plugin {
           }
 
           const rankingsPath = rankingsPathForSource(match[1]);
-          if (!rankingsPath) {
-            res.statusCode = 404;
+          if (rankingsPath) {
+            res.statusCode = 200;
             res.setHeader("Content-Type", "application/json; charset=utf-8");
-            res.end(
-              JSON.stringify({
-                error: `No rankings found for "${match[1]}". Run npm run publish.`,
-              }),
-            );
+            res.end(readFileSync(rankingsPath, "utf8"));
             return;
           }
 
-          res.statusCode = 200;
+          const preview = readRankingsPayloadForSource(match[1]);
+          if (preview) {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json; charset=utf-8");
+            res.end(JSON.stringify(preview));
+            return;
+          }
+
+          res.statusCode = 404;
           res.setHeader("Content-Type", "application/json; charset=utf-8");
-          res.end(readFileSync(rankingsPath, "utf8"));
+          res.end(
+            JSON.stringify({
+              error: `No rankings found for "${match[1]}". Run npm run fetch.`,
+            }),
+          );
+          return;
         },
       );
     },

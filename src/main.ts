@@ -3,11 +3,11 @@ import type { RankedVideo, RankingsPayload, Tag } from "./types";
 import type { ContentKind } from "./lib/content-kind.js";
 import { shouldDisplayVideo } from "./lib/source-filter.js";
 import { parseUploadDate } from "./lib/video-age.js";
-import { isScoredRanking, selectTopPicks } from "./lib/top-picks.js";
+import { groupByScoreBand, isScoredRanking } from "./lib/score-bands.js";
 import { isTooLongForScoring } from "./lib/scoring-limits.js";
 import { positiveDimensionTags } from "./lib/dimension-tags.js";
 import { audienceLevelLabel, AUDIENCE_LEVEL_SCALE_HINT } from "./lib/audience-level.js";
-import { contentKindLabels, topPicksHeading, type PublicSource } from "./lib/public-source.js";
+import { contentKindLabels, type PublicSource } from "./lib/public-source.js";
 import {
   loadPublicSourceBySlug,
   rankingsUrlForSource,
@@ -628,15 +628,24 @@ function excludedTalks(payload: RankingsPayload): {
   }
 
   const visible = inRange(payload.rankings || []);
-  const picks = new Set(visiblePicks(payload).map((video) => video.id));
-  const scored = visible.filter(isScoredRanking);
+  const scored = allScoredVisible(payload);
+  const scoredIds = new Set(scored.map((video) => video.id));
   const durationOpts = { applyLimits: getPageState().source.contentKind !== "essay" };
   const tooLong = visible.filter((video) => isTooLongForScoring(video.duration_seconds, durationOpts));
+  const otherCandidates = [
+    ...inRange(payload.other ?? []),
+    ...visible.filter((video) => !isScoredRanking(video)),
+  ];
+  const otherSeen = new Set<string>();
+  const other = otherCandidates.filter((video) => {
+    if (scoredIds.has(video.id) || otherSeen.has(video.id)) {
+      return false;
+    }
+    otherSeen.add(video.id);
+    return true;
+  });
 
-  return {
-    tooLong,
-    other: scored.filter((video) => !picks.has(video.id)),
-  };
+  return { tooLong, other };
 }
 
 function renderExcludedSection(
@@ -793,15 +802,22 @@ async function loadRankings(): Promise<RankingsPayload> {
   return response.json() as Promise<RankingsPayload>;
 }
 
-function visiblePicks(payload: RankingsPayload): RankedVideo[] {
-  const inRange = (payload.rankings || []).filter((video) =>
-    shouldShowVideo(video.upload_date),
-  );
-  const picks = inRange.filter(isScoredRanking);
-  if (picks.length > 0) {
-    return picks;
+function allScoredVisible(payload: RankingsPayload): RankedVideo[] {
+  const inRange = (videos: RankedVideo[]) =>
+    (videos || []).filter((video) => shouldShowVideo(video.upload_date));
+
+  const primary = inRange(payload.rankings || []).filter(isScoredRanking);
+  const seen = new Set(primary.map((video) => video.id));
+  const merged = [...primary];
+
+  for (const video of inRange(payload.other || []).filter(isScoredRanking)) {
+    if (!seen.has(video.id)) {
+      merged.push(video);
+      seen.add(video.id);
+    }
   }
-  return selectTopPicks(inRange);
+
+  return merged.sort((a, b) => (b.composite ?? 0) - (a.composite ?? 0));
 }
 
 function renderMeta(payload: RankingsPayload): void {
@@ -811,43 +827,63 @@ function renderMeta(payload: RankingsPayload): void {
   }
 
   const { itemLabel } = getPageState();
-  const picks = visiblePicks(payload);
-  const scoredCount = payload.scored_count ?? picks.length;
+  const ranked = allScoredVisible(payload);
+  const scoredCount = payload.scored_count ?? ranked.length;
+  const pendingCount = (payload.other ?? []).filter(
+    (video) => shouldShowVideo(video.upload_date) && video.status === "pending",
+  ).length;
 
-  if (scoredCount > picks.length) {
-    meta.textContent = `${picks.length} top ${itemLabel} (from ${scoredCount} scored)`;
+  if (ranked.length === 0 && pendingCount > 0) {
+    meta.textContent = `${pendingCount} fetched ${itemLabel}, not scored yet`;
+  } else if (scoredCount > ranked.length) {
+    meta.textContent = `${ranked.length} ranked ${itemLabel} (from ${scoredCount} scored)`;
   } else {
-    meta.textContent = `${picks.length} top ${itemLabel}`;
+    meta.textContent = `${ranked.length} ranked ${itemLabel}`;
   }
 }
 
 function renderCards(payload: RankingsPayload): void {
-  const grid = document.getElementById("grid");
+  const container = document.getElementById("ranked-sections");
   const template = document.getElementById("card-template") as HTMLTemplateElement | null;
-  if (!grid || !template) {
+  if (!container || !template) {
     return;
   }
 
-  grid.replaceChildren();
+  container.replaceChildren();
 
-  const picks = visiblePicks(payload);
+  const sections = groupByScoreBand(allScoredVisible(payload));
+  for (const { band, videos } of sections) {
+    const section = document.createElement("section");
+    section.className = "score-band-section";
 
-  picks.forEach((video, index) => {
-    const node = template.content.cloneNode(true) as DocumentFragment;
-    const card = node.querySelector<HTMLElement>(".card");
-    if (!card) {
-      return;
-    }
+    const heading = document.createElement("h2");
+    heading.className = "section-heading score-band-heading";
+    heading.textContent = band.label;
+    section.appendChild(heading);
 
-    populateCard(card, video, { rank: index + 1 });
-    grid.appendChild(node);
-  });
+    const grid = document.createElement("div");
+    grid.className = "grid";
+
+    videos.forEach((video, index) => {
+      const node = template.content.cloneNode(true) as DocumentFragment;
+      const card = node.querySelector<HTMLElement>(".card");
+      if (!card) {
+        return;
+      }
+
+      populateCard(card, video, { rank: index + 1 });
+      grid.appendChild(node);
+    });
+
+    section.appendChild(grid);
+    container.appendChild(section);
+  }
 
   requestAnimationFrame(() => {
     requestAnimationFrame(balanceCardRows);
   });
 
-  for (const img of grid.querySelectorAll<HTMLImageElement>(".thumb")) {
+  for (const img of container.querySelectorAll<HTMLImageElement>(".thumb")) {
     if (!img.complete) {
       img.addEventListener("load", balanceCardRows, { once: true });
     }
@@ -855,15 +891,15 @@ function renderCards(payload: RankingsPayload): void {
 }
 
 function renderError(message: string): void {
-  const grid = document.getElementById("grid");
-  if (!grid) {
+  const container = document.getElementById("ranked-sections");
+  if (!container) {
     return;
   }
-  grid.replaceChildren();
+  container.replaceChildren();
   const error = document.createElement("div");
   error.className = "error";
   error.textContent = message;
-  grid.appendChild(error);
+  container.appendChild(error);
 }
 
 async function initPage(): Promise<void> {
@@ -891,11 +927,6 @@ async function initPage(): Promise<void> {
   const heading = document.getElementById("page-heading");
   if (heading) {
     heading.textContent = source.pageTitle;
-  }
-
-  const topPicks = document.getElementById("top-picks-heading");
-  if (topPicks) {
-    topPicks.textContent = topPicksHeading(source);
   }
 
   const payload = await loadRankings();

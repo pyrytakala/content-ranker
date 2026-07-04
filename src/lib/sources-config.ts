@@ -11,13 +11,29 @@ export interface DateRange {
 
 export type FetchKind = "youtube" | "essay";
 
+export type EssayFetchAdapter = "paul-graham" | "rss-readability";
+
+export type EssayListingKind =
+  | "feed"
+  | "gwern-index"
+  | "anthropic-engineering"
+  | "openai-blog"
+  | "hamel-index"
+  | "machine-theory-journal"
+  | "semianalysis-archives";
+
 export interface SourceConfig {
   id: string;
   title: string;
   slug: string;
   channelUrl: string;
   fetchKind: FetchKind;
-  fetchAdapter?: "paul-graham";
+  fetchAdapter?: EssayFetchAdapter;
+  essayFeedUrl?: string;
+  essayListingKind?: EssayListingKind;
+  essayChannelName?: string;
+  essayMaxItems?: number;
+  essayUrlIncludes?: string;
   contentKind: "conference" | "podcast" | "channel" | "essay";
   coverImage: string;
   itemLabel: string;
@@ -26,6 +42,8 @@ export interface SourceConfig {
   location?: string;
   dateRange?: DateRange;
   fetchWindow?: { days?: number; months?: number };
+  maxVideos?: number;
+  youtubeTitleIncludes?: string;
   maxDisplayAgeDays: number | null;
 }
 
@@ -119,6 +137,272 @@ export const SOURCES: Record<string, SourceConfig> = {
     coverImage: "/images/covers/paul-graham.png",
     dateRange: { since: "20200101", until: "20291231" },
     period: "2020s",
+    fetchAdapter: "paul-graham",
+    channelName: "Paul Graham",
+  }),
+  "swyx-io-2026": essaySource({
+    id: "swyx-io-2026",
+    name: "swyx.io",
+    catalogUrl: "https://swyx.io/rss.xml",
+    feedUrl: "https://swyx.io/rss.xml",
+    coverImage: "/images/covers/swyx-io.png",
+    dateRange: { since: "20260101", until: "20261231" },
+    period: "2026",
+    listingKind: "feed",
+    channelName: "swyx.io",
+  }),
+  "gwern-blog-2025-2026": essaySource({
+    id: "gwern-blog-2025-2026",
+    name: "Gwern.net Blog",
+    catalogUrl: "https://gwern.net/blog/index",
+    coverImage: "/images/covers/gwern.png",
+    dateRange: { since: "20250101", until: "20261231" },
+    period: "2025–2026",
+    listingKind: "gwern-index",
+    channelName: "Gwern",
+  }),
+  "simon-willison-h1-2026": essaySource({
+    id: "simon-willison-h1-2026",
+    name: "Simon Willison",
+    catalogUrl: "https://simonwillison.net/atom/everything/",
+    feedUrl: "https://simonwillison.net/atom/everything/",
+    coverImage: "/images/covers/simon-willison.png",
+    dateRange: { since: "20260101", until: "20260630" },
+    period: "H1 2026",
+    listingKind: "feed",
+    channelName: "Simon Willison",
+  }),
+  "anthropic-engineering-h1-2026": essaySource({
+    id: "anthropic-engineering-h1-2026",
+    name: "Anthropic Engineering",
+    catalogUrl: "https://www.anthropic.com/engineering",
+    coverImage: "/images/covers/anthropic-engineering.png",
+    dateRange: { since: "20260101", until: "20260630" },
+    period: "H1 2026",
+    listingKind: "anthropic-engineering",
+    channelName: "Anthropic Engineering",
+  }),
+  "openai-developer-blog-h1-2026": essaySource({
+    id: "openai-developer-blog-h1-2026",
+    name: "OpenAI Developer Blog",
+    catalogUrl: "https://developers.openai.com/blog",
+    coverImage: "/images/covers/openai-developer-blog.png",
+    dateRange: { since: "20260101", until: "20260630" },
+    period: "H1 2026",
+    listingKind: "openai-blog",
+    channelName: "OpenAI Developer Blog",
+  }),
+  "stratechery-h1-2026": essaySource({
+    id: "stratechery-h1-2026",
+    name: "Stratechery",
+    catalogUrl: "https://stratechery.com/feed/",
+    feedUrl: "https://stratechery.com/feed/",
+    coverImage: "/images/covers/stratechery.png",
+    dateRange: { since: "20260101", until: "20260630" },
+    period: "H1 2026",
+    listingKind: "feed",
+    channelName: "Stratechery",
+  }),
+  "import-ai-h1-2026": essaySource({
+    id: "import-ai-h1-2026",
+    name: "Import AI",
+    catalogUrl: "https://importai.substack.com/feed",
+    feedUrl: "https://importai.substack.com/feed",
+    coverImage: "/images/covers/import-ai.png",
+    dateRange: { since: "20260101", until: "20260630" },
+    period: "H1 2026",
+    listingKind: "feed",
+    channelName: "Import AI",
+  }),
+  "hamel-dev-h1-2026": essaySource({
+    id: "hamel-dev-h1-2026",
+    name: "Hamel Husain",
+    catalogUrl: "https://hamel.dev/",
+    coverImage: "/images/covers/hamel-dev.png",
+    dateRange: { since: "20260101", until: "20260630" },
+    period: "H1 2026",
+    listingKind: "hamel-index",
+    channelName: "Hamel Husain",
+  }),
+  "machine-theory-journal-h1-2026": essaySource({
+    id: "machine-theory-journal-h1-2026",
+    name: "Machine Theory Journal",
+    catalogUrl: "https://machine-theory.com/journal/",
+    coverImage: "/images/covers/machine-theory.png",
+    dateRange: { since: "20260101", until: "20260630" },
+    period: "H1 2026",
+    listingKind: "machine-theory-journal",
+    channelName: "kwindla",
+  }),
+  "semianalysis-q2-2026": essaySource({
+    id: "semianalysis-q2-2026",
+    name: "SemiAnalysis",
+    catalogUrl: "https://semianalysis.com/archives/",
+    coverImage: "/images/covers/semianalysis.png",
+    dateRange: { since: "20260401", until: "20260630" },
+    period: "Q2 2026",
+    listingKind: "semianalysis-archives",
+    channelName: "SemiAnalysis",
+  }),
+  "bens-bites-q2-2026": essaySource({
+    id: "bens-bites-q2-2026",
+    name: "Ben's Bites",
+    catalogUrl: "https://www.bensbites.com/feed",
+    feedUrl: "https://www.bensbites.com/feed",
+    coverImage: "/images/covers/bens-bites.png",
+    dateRange: { since: "20260401", until: "20260630" },
+    period: "Q2 2026",
+    listingKind: "feed",
+    channelName: "Ben's Bites",
+  }),
+  "pragmatic-engineer-2026": essaySource({
+    id: "pragmatic-engineer-2026",
+    name: "The Pragmatic Engineer",
+    catalogUrl: "https://blog.pragmaticengineer.com/rss/",
+    feedUrl: "https://blog.pragmaticengineer.com/rss/",
+    coverImage: "/images/covers/pragmatic-engineer.png",
+    dateRange: { since: "20260101", until: "20261231" },
+    period: "2026",
+    listingKind: "feed",
+    channelName: "The Pragmatic Engineer",
+  }),
+  "construction-physics-q2-2026": essaySource({
+    id: "construction-physics-q2-2026",
+    name: "Construction Physics",
+    catalogUrl: "https://www.construction-physics.com/feed",
+    feedUrl: "https://www.construction-physics.com/feed",
+    coverImage: "/images/covers/construction-physics.png",
+    dateRange: { since: "20260401", until: "20260630" },
+    period: "Q2 2026",
+    listingKind: "feed",
+    channelName: "Construction Physics",
+  }),
+  "asterisk-issue-14-latest": essaySource({
+    id: "asterisk-issue-14-latest",
+    name: "Asterisk — Issue 14",
+    catalogUrl: "https://asteriskmag.com/feed",
+    feedUrl: "https://asteriskmag.com/feed",
+    coverImage: "/images/covers/asterisk.png",
+    dateRange: { since: "20260401", until: "20260630" },
+    period: "Issue 14 (latest 5)",
+    listingKind: "feed",
+    channelName: "Asterisk",
+    maxItems: 5,
+    urlIncludes: "/issues/14/",
+  }),
+  "odd-lots-q2-2026": quarterlyPodcastSource({
+    id: "odd-lots-q2-2026",
+    name: "Odd Lots",
+    channelUrl:
+      "https://www.youtube.com/playlist?list=PLe4PRejZgr0MuA6M0zkZyy-99-qc87wKV",
+    coverImage: "/images/covers/odd-lots.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
+  }),
+  "yc-startup-pod-q2-2026": quarterlyPodcastSource({
+    id: "yc-startup-pod-q2-2026",
+    name: "YC Startup Podcast",
+    channelHandle: "YCombinator",
+    coverImage: "/images/covers/y-combinator.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
+  }),
+  "my-first-million-q2-2026": quarterlyPodcastSource({
+    id: "my-first-million-q2-2026",
+    name: "My First Million",
+    channelHandle: "MyFirstMillionPod",
+    coverImage: "/images/covers/my-first-million.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
+  }),
+  "pmf-show-q2-2026": quarterlyPodcastSource({
+    id: "pmf-show-q2-2026",
+    name: "The PMF Show",
+    channelHandle: "pmfshow",
+    coverImage: "/images/covers/pmf-show.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
+  }),
+  "how-i-built-this-q2-2026": essaySource({
+    id: "how-i-built-this-q2-2026",
+    name: "How I Built This",
+    catalogUrl: "https://rss.art19.com/how-i-built-this",
+    feedUrl: "https://rss.art19.com/how-i-built-this",
+    coverImage: "/images/covers/how-i-built-this.png",
+    dateRange: { since: "20260401", until: "20260630" },
+    period: "Q2 2026",
+    listingKind: "feed",
+    channelName: "How I Built This",
+    maxItems: 30,
+  }),
+  "lennys-podcast-q2-2026": quarterlyPodcastSource({
+    id: "lennys-podcast-q2-2026",
+    name: "Lenny's Podcast",
+    channelHandle: "LennysPodcast",
+    coverImage: "/images/covers/lennys-podcast.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
+  }),
+  "nateliason-q2-2026": quarterlyPodcastSource({
+    id: "nateliason-q2-2026",
+    name: "Nat Eliason",
+    channelHandle: "nateliason",
+    coverImage: "/images/covers/nateliason.png",
+    year: 2026,
+    quarter: 2,
+    contentKind: "channel",
+    maxVideos: 30,
+  }),
+  "founders-podcast-q2-2026": quarterlyPodcastSource({
+    id: "founders-podcast-q2-2026",
+    name: "Founders Podcast",
+    channelHandle: "founderspodcast1",
+    coverImage: "/images/covers/founders-podcast.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
+  }),
+  "peter-attia-q2-2026": quarterlyPodcastSource({
+    id: "peter-attia-q2-2026",
+    name: "Peter Attia MD",
+    channelHandle: "PeterAttiaMD",
+    coverImage: "/images/covers/peter-attia.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
+  }),
+  "modern-wisdom-q2-2026": quarterlyPodcastSource({
+    id: "modern-wisdom-q2-2026",
+    name: "Modern Wisdom",
+    channelUrl: "https://www.youtube.com/channel/UCIaH-gZIVC432YRjNVvnyCA/videos",
+    coverImage: "/images/covers/modern-wisdom.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
+  }),
+  "greg-isenberg-q2-2026": quarterlyPodcastSource({
+    id: "greg-isenberg-q2-2026",
+    name: "Greg Isenberg",
+    channelHandle: "GregIsenberg",
+    coverImage: "/images/covers/greg-isenberg.png",
+    year: 2026,
+    quarter: 2,
+    contentKind: "channel",
+    maxVideos: 30,
+  }),
+  "iltb-podcast-q2-2026": quarterlyPodcastSource({
+    id: "iltb-podcast-q2-2026",
+    name: "Invest Like the Best",
+    channelHandle: "ILTB_Podcast",
+    coverImage: "/images/covers/iltb-podcast.png",
+    year: 2026,
+    quarter: 2,
+    maxVideos: 30,
   }),
 };
 

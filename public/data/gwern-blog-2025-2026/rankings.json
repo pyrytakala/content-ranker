@@ -1,0 +1,225 @@
+{
+  "source_id": "gwern-blog-2025-2026",
+  "video_count": 24,
+  "scored_count": 0,
+  "ranked_count": 0,
+  "rankings": [],
+  "other": [
+    {
+      "id": "face-training",
+      "title": "Face Recognition Training App",
+      "url": "https://gwern.net/blog/2026/face-training",
+      "upload_date": "20260620",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "llm-retcon",
+      "title": "Better Fiction via Retcon Planning",
+      "url": "https://gwern.net/blog/2026/llm-retcon",
+      "upload_date": "20260602",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "questions-moravec",
+      "title": "30 Questions for Hans Moravec",
+      "url": "https://gwern.net/blog/2026/questions-moravec",
+      "upload_date": "20260422",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "questions-young",
+      "title": "25 Questions for Alexander Young",
+      "url": "https://gwern.net/blog/2026/questions-young",
+      "upload_date": "20260410",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "rabbit",
+      "title": "Jacky Rabbit and the Empty Jam Pot",
+      "url": "https://gwern.net/blog/2026/rabbit",
+      "upload_date": "20260309",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "make-me-care",
+      "title": "First, Make Me Care",
+      "url": "https://gwern.net/blog/2026/make-me-care",
+      "upload_date": "20260114",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "conference-size",
+      "title": "Conference Fermi Problems",
+      "url": "https://gwern.net/blog/2025/conference-size",
+      "upload_date": "20250706",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "perfume",
+      "title": "Perfume Reviews",
+      "url": "https://gwern.net/blog/2025/perfume",
+      "upload_date": "20250705",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "bot-location",
+      "title": "Tracking Phishing Bots Via Locations",
+      "url": "https://gwern.net/blog/2025/bot-location",
+      "upload_date": "20250604",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "better-llm-writing",
+      "title": "Towards Better LLM Creative Writing",
+      "url": "https://gwern.net/blog/2025/better-llm-writing",
+      "upload_date": "20250529",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "conference",
+      "title": "Conferences As D&D Tabletops",
+      "url": "https://gwern.net/blog/2025/conference",
+      "upload_date": "20250528",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "pinball-hacking",
+      "title": "Hacking Pinball High Scores",
+      "url": "https://gwern.net/blog/2025/pinball-hacking",
+      "upload_date": "20250528",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "bell-crow-moon",
+      "title": "Bell, Crow, Moon: 11 Variations",
+      "url": "https://gwern.net/blog/2025/bell-crow-moon",
+      "upload_date": "20250525",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "you-could-have-invented-transformers",
+      "title": "You Could’ve Invented Transformers",
+      "url": "https://gwern.net/blog/2025/you-could-have-invented-transformers",
+      "upload_date": "20250525",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "human-cannibalism",
+      "title": "Human Cannibalism Alignment Chart",
+      "url": "https://gwern.net/blog/2025/human-cannibalism",
+      "upload_date": "20250512",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "meta-doomsday",
+      "title": "The Meta-LW Doomsday Argument",
+      "url": "https://gwern.net/blog/2025/meta-doomsday",
+      "upload_date": "20250429",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "ai-cannibalism",
+      "title": "AI Cannibalism Can Be Good",
+      "url": "https://gwern.net/blog/2025/ai-cannibalism",
+      "upload_date": "20250427",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "area-man",
+      "title": "Area Man Angry AI Not Silver Bullet",
+      "url": "https://gwern.net/blog/2025/area-man",
+      "upload_date": "20250419",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "parliament",
+      "title": "Parliament of Rag & Bone",
+      "url": "https://gwern.net/blog/2025/parliament",
+      "upload_date": "20250419",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "good-ai-samples",
+      "title": "Adding Bits Beats AI Slop",
+      "url": "https://gwern.net/blog/2025/good-ai-samples",
+      "upload_date": "20250323",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "questions-henrich",
+      "title": "10 Questions for Joseph Henrich",
+      "url": "https://gwern.net/blog/2026/questions-henrich",
+      "upload_date": "20250315",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "large-files",
+      "title": "Gwern.net Large File Support",
+      "url": "https://gwern.net/blog/2025/large-files",
+      "upload_date": "20250309",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "llms-can-be-faster",
+      "title": "LLMs Can Be Faster Than You Think",
+      "url": "https://gwern.net/blog/2025/llms-can-be-faster",
+      "upload_date": "20250207",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    },
+    {
+      "id": "plumbing-vs-internet",
+      "title": "Plumbing vs Internet, Revisited",
+      "url": "https://gwern.net/blog/2025/plumbing-vs-internet",
+      "upload_date": "20250102",
+      "duration_seconds": null,
+      "speakers": "Gwern",
+      "status": "pending"
+    }
+  ]
+}

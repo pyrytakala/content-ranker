@@ -17,9 +17,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "@mozilla/readability": "^0.6.0",
+    "dotenv": "^16.4.7",
+    "jsdom": "^27.0.1",
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
+    "@types/jsdom": "^28.0.3",
     "@types/node": "^22.13.10",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2",

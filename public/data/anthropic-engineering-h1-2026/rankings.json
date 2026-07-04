@@ -1,0 +1,90 @@
+{
+  "source_id": "anthropic-engineering-h1-2026",
+  "video_count": 9,
+  "scored_count": 0,
+  "ranked_count": 0,
+  "rankings": [],
+  "other": [
+    {
+      "id": "how-we-contain-claude",
+      "title": "How we contain Claude across products",
+      "url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "upload_date": "20260423",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    },
+    {
+      "id": "april-23-postmortem",
+      "title": "An update on recent Claude Code quality reports",
+      "url": "https://www.anthropic.com/engineering/april-23-postmortem",
+      "upload_date": "20260408",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    },
+    {
+      "id": "managed-agents",
+      "title": "Scaling Managed Agents: Decoupling the brain from the hands",
+      "url": "https://www.anthropic.com/engineering/managed-agents",
+      "upload_date": "20260325",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    },
+    {
+      "id": "claude-code-auto-mode",
+      "title": "How we built Claude Code auto mode: a safer way to skip permissions",
+      "url": "https://www.anthropic.com/engineering/claude-code-auto-mode",
+      "upload_date": "20260324",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    },
+    {
+      "id": "harness-design-long-running-apps",
+      "title": "Harness design for long-running application development",
+      "url": "https://www.anthropic.com/engineering/harness-design-long-running-apps",
+      "upload_date": "20260306",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    },
+    {
+      "id": "eval-awareness-browsecomp",
+      "title": "Eval awareness in Claude Opus 4.6’s BrowseComp performance",
+      "url": "https://www.anthropic.com/engineering/eval-awareness-browsecomp",
+      "upload_date": "20260205",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    },
+    {
+      "id": "infrastructure-noise",
+      "title": "Quantifying infrastructure noise in agentic coding evals",
+      "url": "https://www.anthropic.com/engineering/infrastructure-noise",
+      "upload_date": "20260205",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    },
+    {
+      "id": "building-c-compiler",
+      "title": "Building a C compiler with a team of parallel Claudes",
+      "url": "https://www.anthropic.com/engineering/building-c-compiler",
+      "upload_date": "20260121",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    },
+    {
+      "id": "demystifying-evals-for-ai-agents",
+      "title": "Demystifying evals for AI agents",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "upload_date": "20260109",
+      "duration_seconds": null,
+      "speakers": "Anthropic Engineering",
+      "status": "pending"
+    }
+  ]
+}

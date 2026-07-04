@@ -1,0 +1,189 @@
+{
+  "source_id": "import-ai-h1-2026",
+  "video_count": 20,
+  "scored_count": 0,
+  "ranked_count": 0,
+  "rankings": [],
+  "other": [
+    {
+      "id": "import-ai-463-self-improving-robots",
+      "title": "Import AI 463: Self-improving robots; a 10k Chinese GPU cluster; and an elegiac essay for the human era",
+      "url": "https://importai.substack.com/p/import-ai-463-self-improving-robots",
+      "upload_date": "20260629",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-462-superpersuasion-self",
+      "title": "Import AI 462: Superpersuasion; self-sustaining AI; paths to ASI",
+      "url": "https://importai.substack.com/p/import-ai-462-superpersuasion-self",
+      "upload_date": "20260622",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-461-alignment-is-not-on",
+      "title": "Import AI 461: \"Alignment is not on track\"; FrontierCode; and synthetic research interns",
+      "url": "https://importai.substack.com/p/import-ai-461-alignment-is-not-on",
+      "upload_date": "20260615",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-460-reward-hacking-society",
+      "title": "Import AI 460: Reward hacking society, RSI data from Anthropic; and RL-based quadcopter racing",
+      "url": "https://importai.substack.com/p/import-ai-460-reward-hacking-society",
+      "upload_date": "20260608",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-459-ai-oversight-is-difficult",
+      "title": "Import AI 459: AI oversight is difficult; scaling laws for protein folding models; and pricing the extinction risk of AI systems",
+      "url": "https://importai.substack.com/p/import-ai-459-ai-oversight-is-difficult",
+      "upload_date": "20260601",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-458-reckoning-with-the",
+      "title": "Import AI 458: Reckoning with the future; and a singularity story",
+      "url": "https://importai.substack.com/p/import-ai-458-reckoning-with-the",
+      "upload_date": "20260526",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-457-ai-stuxnet-cursed-muon",
+      "title": "Import AI 457: AI stuxnet; cursed Muon optimizer; and positive alignment",
+      "url": "https://importai.substack.com/p/import-ai-457-ai-stuxnet-cursed-muon",
+      "upload_date": "20260518",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-456-rsi-and-economic-growth",
+      "title": "Import AI 456: RSI and economic growth; radical optionality for AI regulation; and a neural computer",
+      "url": "https://importai.substack.com/p/import-ai-456-rsi-and-economic-growth",
+      "upload_date": "20260511",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-455-automating-ai-research",
+      "title": "Import AI 455: AI systems are about to start building themselves.",
+      "url": "https://importai.substack.com/p/import-ai-455-automating-ai-research",
+      "upload_date": "20260504",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-454-automating-alignment",
+      "title": "Import AI 454: Automating alignment research; safety study of a Chinese model; HiFloat4",
+      "url": "https://importai.substack.com/p/import-ai-454-automating-alignment",
+      "upload_date": "20260420",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-453-breaking-ai-agents",
+      "title": "Import AI 453: Breaking AI agents; MirrorCode; and ten views on gradual disempowerment",
+      "url": "https://importai.substack.com/p/import-ai-453-breaking-ai-agents",
+      "upload_date": "20260413",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-452-scaling-laws-for-cyberwar",
+      "title": "Import AI 452: Scaling laws for cyberwar; rising tides of AI automation; and a puzzle over gDP forecasting",
+      "url": "https://importai.substack.com/p/import-ai-452-scaling-laws-for-cyberwar",
+      "upload_date": "20260406",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-451-political-superintelligence",
+      "title": "Import AI 451: Political superintelligence; Google's society of minds, and a robot drummer",
+      "url": "https://importai.substack.com/p/import-ai-451-political-superintelligence",
+      "upload_date": "20260330",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-450-chinas-electronic-warfare",
+      "title": "Import AI 450: China's electronic warfare model; traumatized LLMs; and a scaling law for cyberattacks",
+      "url": "https://importai.substack.com/p/import-ai-450-chinas-electronic-warfare",
+      "upload_date": "20260323",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "importai-449-llms-training-other",
+      "title": "ImportAI 449: LLMs training other LLMs; 72B distributed training run; computer vision is harder than generative text",
+      "url": "https://importai.substack.com/p/importai-449-llms-training-other",
+      "upload_date": "20260316",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-448-ai-r-and-d-bytedances",
+      "title": "Import AI 448: AI R&D; Bytedance's CUDA-writing agent; on-device satellite AI",
+      "url": "https://importai.substack.com/p/import-ai-448-ai-r-and-d-bytedances",
+      "upload_date": "20260309",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-447-the-agi-economy-testing",
+      "title": "Import AI 447: The AGI economy; testing AIs with generated games; and agent ecologies",
+      "url": "https://importai.substack.com/p/import-ai-447-the-agi-economy-testing",
+      "upload_date": "20260302",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-446-nuclear-llms-chinas",
+      "title": "Import AI 446: Nuclear LLMs; China's big AI benchmark; measurement and AI policy",
+      "url": "https://importai.substack.com/p/import-ai-446-nuclear-llms-chinas",
+      "upload_date": "20260223",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-445-timing-superintelligence",
+      "title": "Import AI 445: Timing superintelligence; AIs solve frontier math proofs; a new ML research benchmark",
+      "url": "https://importai.substack.com/p/import-ai-445-timing-superintelligence",
+      "upload_date": "20260216",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    },
+    {
+      "id": "import-ai-444-llm-societies-huawei",
+      "title": "Import AI 444: LLM societies; Huawei makes kernels with AI; ChipBench",
+      "url": "https://importai.substack.com/p/import-ai-444-llm-societies-huawei",
+      "upload_date": "20260209",
+      "duration_seconds": null,
+      "speakers": "Import AI",
+      "status": "pending"
+    }
+  ]
+}

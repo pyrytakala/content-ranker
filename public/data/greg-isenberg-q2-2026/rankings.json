@@ -1,0 +1,193 @@
+{
+  "source_id": "greg-isenberg-q2-2026",
+  "video_count": 23,
+  "scored_count": 0,
+  "ranked_count": 0,
+  "rankings": [],
+  "other": [
+    {
+      "id": "jJIOA4GroBw",
+      "title": "\"Learn AI” Is Bad Advice. Learn This Instead",
+      "url": "https://www.youtube.com/watch?v=jJIOA4GroBw",
+      "upload_date": "20260625",
+      "duration_seconds": 1794,
+      "status": "pending"
+    },
+    {
+      "id": "xa-9O5cDm3c",
+      "title": "GLM 5.2: What you need to know",
+      "url": "https://www.youtube.com/watch?v=xa-9O5cDm3c",
+      "upload_date": "20260623",
+      "duration_seconds": 1365,
+      "status": "pending"
+    },
+    {
+      "id": "LYomocq6Dpo",
+      "title": "AI Apps Are Making $10K/Month. Here's Exactly How.",
+      "url": "https://www.youtube.com/watch?v=LYomocq6Dpo",
+      "upload_date": "20260615",
+      "duration_seconds": 2890,
+      "status": "pending"
+    },
+    {
+      "id": "bdhUBBACglw",
+      "title": "Claude Fable 5 is BANNED. What to do?",
+      "url": "https://www.youtube.com/watch?v=bdhUBBACglw",
+      "upload_date": "20260613",
+      "duration_seconds": 1496,
+      "status": "pending"
+    },
+    {
+      "id": "vjdHAWvVCP4",
+      "title": "Claude Fable 5 is BACK",
+      "url": "https://www.youtube.com/watch?v=vjdHAWvVCP4",
+      "upload_date": "20260611",
+      "duration_seconds": 1989,
+      "status": "pending"
+    },
+    {
+      "id": "7clJ8IH784Q",
+      "title": "WTF Is an \"AI Agent Loop\"? Genius or Hype?",
+      "url": "https://www.youtube.com/watch?v=7clJ8IH784Q",
+      "upload_date": "20260609",
+      "duration_seconds": 1352,
+      "status": "pending"
+    },
+    {
+      "id": "LztPaNmcWGU",
+      "title": "Become AI Native in less than 60 mins",
+      "url": "https://www.youtube.com/watch?v=LztPaNmcWGU",
+      "upload_date": "20260608",
+      "duration_seconds": 3404,
+      "status": "pending"
+    },
+    {
+      "id": "EJm8Ka-gVOc",
+      "title": "Hermes Agent Desktop: Full Setup + Real Use Cases",
+      "url": "https://www.youtube.com/watch?v=EJm8Ka-gVOc",
+      "upload_date": "20260606",
+      "duration_seconds": 2629,
+      "status": "pending"
+    },
+    {
+      "id": "tUeSxXHmE9w",
+      "title": "OpenAI Codex: Build Apps That Work For You 24/7",
+      "url": "https://www.youtube.com/watch?v=tUeSxXHmE9w",
+      "upload_date": "20260604",
+      "duration_seconds": 1482,
+      "status": "pending"
+    },
+    {
+      "id": "MlptIfpoLlw",
+      "title": "The Next $100B Market: Selling to AI Agents",
+      "url": "https://www.youtube.com/watch?v=MlptIfpoLlw",
+      "upload_date": "20260602",
+      "duration_seconds": 840,
+      "status": "pending"
+    },
+    {
+      "id": "IFLY6L3YPGo",
+      "title": "9 biggest startup ideas right now (AI, B2C, mobile etc)",
+      "url": "https://www.youtube.com/watch?v=IFLY6L3YPGo",
+      "upload_date": "20260518",
+      "duration_seconds": 4103,
+      "status": "pending"
+    },
+    {
+      "id": "BI-MNjm1tTQ",
+      "title": "The $1M+ Solo AI Agent Business (Full Course)",
+      "url": "https://www.youtube.com/watch?v=BI-MNjm1tTQ",
+      "upload_date": "20260512",
+      "duration_seconds": 2875,
+      "status": "pending"
+    },
+    {
+      "id": "Ix43w_IssR8",
+      "title": "Screensharing How to Start an AI Agent Business Today",
+      "url": "https://www.youtube.com/watch?v=Ix43w_IssR8",
+      "upload_date": "20260511",
+      "duration_seconds": 1818,
+      "status": "pending"
+    },
+    {
+      "id": "oLu32YpiIJw",
+      "title": "My AI Design Workflow That Doesn't Ship Slop",
+      "url": "https://www.youtube.com/watch?v=oLu32YpiIJw",
+      "upload_date": "20260506",
+      "duration_seconds": 3062,
+      "status": "pending"
+    },
+    {
+      "id": "65IAqRUxg3c",
+      "title": "AI Agents run my business and life (Andrew Wilkinson)",
+      "url": "https://www.youtube.com/watch?v=65IAqRUxg3c",
+      "upload_date": "20260504",
+      "duration_seconds": 2822,
+      "status": "pending"
+    },
+    {
+      "id": "nyO60uzTnP4",
+      "title": "Making $$ with AI Agents",
+      "url": "https://www.youtube.com/watch?v=nyO60uzTnP4",
+      "upload_date": "20260429",
+      "duration_seconds": 3911,
+      "status": "pending"
+    },
+    {
+      "id": "LWx4FGam2aQ",
+      "title": "Stop using Claude. Start using Codex?",
+      "url": "https://www.youtube.com/watch?v=LWx4FGam2aQ",
+      "upload_date": "20260427",
+      "duration_seconds": 3881,
+      "status": "pending"
+    },
+    {
+      "id": "Qn2c_U-cWQs",
+      "title": "Hermes Agent: The New OpenClaw?",
+      "url": "https://www.youtube.com/watch?v=Qn2c_U-cWQs",
+      "upload_date": "20260420",
+      "duration_seconds": 2221,
+      "status": "pending"
+    },
+    {
+      "id": "vyLaimDeK_g",
+      "title": "Claude Design: Full Walkthrough. I'm blown away.",
+      "url": "https://www.youtube.com/watch?v=vyLaimDeK_g",
+      "upload_date": "20260418",
+      "duration_seconds": 3600,
+      "status": "pending"
+    },
+    {
+      "id": "YiitvyQGbkc",
+      "title": "My Claude Code workflow to A/B startups in seconds",
+      "url": "https://www.youtube.com/watch?v=YiitvyQGbkc",
+      "upload_date": "20260413",
+      "duration_seconds": 2123,
+      "status": "pending"
+    },
+    {
+      "id": "S_oN3vlzpMw",
+      "title": "How AI agents & Claude skills work (Clearly Explained)",
+      "url": "https://www.youtube.com/watch?v=S_oN3vlzpMw",
+      "upload_date": "20260408",
+      "duration_seconds": 2126,
+      "status": "pending"
+    },
+    {
+      "id": "dNASCxGFoHg",
+      "title": "How I use iMessage and AI to run my life",
+      "url": "https://www.youtube.com/watch?v=dNASCxGFoHg",
+      "upload_date": "20260406",
+      "duration_seconds": 1867,
+      "status": "pending"
+    },
+    {
+      "id": "lyqk7zxbCKs",
+      "title": "23 AI Trends keeping me up at night",
+      "url": "https://www.youtube.com/watch?v=lyqk7zxbCKs",
+      "upload_date": "20260401",
+      "duration_seconds": 1897,
+      "status": "pending"
+    }
+  ]
+}

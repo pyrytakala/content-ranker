@@ -23,13 +23,18 @@ export { halfYearDateRange } from "./half-year.js";
 export interface QuarterlyPodcastSourceOptions {
   id: string;
   name: string;
-  channelHandle: string;
+  channelHandle?: string;
+  /** Override default @handle/videos URL (e.g. YouTube playlists). */
+  channelUrl?: string;
   coverImage: string;
   year: number;
   quarter: 1 | 2 | 3 | 4;
   contentKind?: SourceConfig["contentKind"];
   /** Use Jan–Jun (Q1+Q2) instead of a single quarter. */
   halfYear?: boolean;
+  maxVideos?: number;
+  /** Keep only videos whose title contains this substring. */
+  youtubeTitleIncludes?: string;
 }
 
 export interface EssaySourceOptions {
@@ -39,12 +44,29 @@ export interface EssaySourceOptions {
   coverImage: string;
   dateRange: DateRange;
   period: string;
-  fetchAdapter?: "paul-graham";
+  fetchAdapter?: SourceConfig["fetchAdapter"];
+  feedUrl?: string;
+  listingKind?: SourceConfig["essayListingKind"];
+  channelName?: string;
+  maxItems?: number;
+  urlIncludes?: string;
 }
 
 export function essaySource(options: EssaySourceOptions): SourceConfig {
-  const { id, name, catalogUrl, coverImage, dateRange, period, fetchAdapter = "paul-graham" } =
-    options;
+  const {
+    id,
+    name,
+    catalogUrl,
+    coverImage,
+    dateRange,
+    period,
+    fetchAdapter = "rss-readability",
+    feedUrl,
+    listingKind = feedUrl ? "feed" : undefined,
+    channelName,
+    maxItems,
+    urlIncludes,
+  } = options;
 
   return {
     id,
@@ -53,10 +75,15 @@ export function essaySource(options: EssaySourceOptions): SourceConfig {
     channelUrl: catalogUrl,
     fetchKind: "essay",
     fetchAdapter,
+    essayFeedUrl: feedUrl,
+    essayListingKind: listingKind,
+    essayChannelName: channelName ?? name,
+    essayMaxItems: maxItems,
+    essayUrlIncludes: urlIncludes,
     contentKind: "essay",
     coverImage,
-    itemLabel: "essays",
-    pageTitle: `${name} essays`,
+    itemLabel: "posts",
+    pageTitle: `${name} posts`,
     period,
     dateRange,
     maxDisplayAgeDays: null,
@@ -70,25 +97,34 @@ export function quarterlyPodcastSource(
     id,
     name,
     channelHandle,
+    channelUrl,
     coverImage,
     year,
     quarter,
     contentKind = "podcast",
     halfYear = false,
+    maxVideos,
+    youtubeTitleIncludes,
   } = options;
   const title = halfYear ? `${name} — H1 ${year}` : `${name} — Q${quarter} ${year}`;
   const pageTitles: Record<SourceConfig["contentKind"], string> = {
     conference: `${title} talks`,
     podcast: `${title} episodes`,
     channel: `${title} videos`,
-    essay: `${title} essays`,
+    essay: `${title} posts`,
   };
 
   return {
     id,
     title,
     slug: id,
-    channelUrl: `https://www.youtube.com/@${channelHandle}/videos`,
+    channelUrl:
+      channelUrl ??
+      (channelHandle
+        ? `https://www.youtube.com/@${channelHandle}/videos`
+        : (() => {
+            throw new Error(`channelHandle or channelUrl is required for ${id}`);
+          })()),
     fetchKind: "youtube",
     contentKind,
     coverImage,
@@ -97,6 +133,8 @@ export function quarterlyPodcastSource(
     period: halfYear ? `Jan–Jun ${year}` : `${QUARTER_PERIODS[quarter]} ${year}`,
     dateRange: halfYear ? halfYearDateRange(year) : quarterDateRange(year, quarter),
     fetchWindow: { months: halfYear ? 7 : 4 },
+    maxVideos,
+    youtubeTitleIncludes,
     maxDisplayAgeDays: null,
   };
 }

@@ -76,6 +76,16 @@ body {
   color: var(--muted);
 }
 
+.score-band-section + .score-band-section {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.score-band-heading {
+  margin-bottom: 0.85rem;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

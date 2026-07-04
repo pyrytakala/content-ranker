@@ -46,6 +46,7 @@ export function listChannelVideosWithYtDlp(
     dateRange?: DateRange;
     maxVideos?: number | null;
     sourceId?: string;
+    titleIncludes?: string;
   } = {},
 ): Array<[string, Record<string, unknown>]> {
   return pipelineLogSync(
@@ -129,15 +130,30 @@ function listFlatPlaylistEntries(
   return entries;
 }
 
+function filterFlatEntriesByTitle(
+  entries: Array<{ videoId: string; title: string; durationSeconds: number | null }>,
+  titleIncludes?: string,
+): Array<{ videoId: string; title: string; durationSeconds: number | null }> {
+  if (!titleIncludes) {
+    return entries;
+  }
+  const needle = titleIncludes.toLowerCase();
+  return entries.filter((entry) => entry.title.toLowerCase().includes(needle));
+}
+
 function listChannelVideosWithDateProbe(
   ytDlp: string[],
   channelUrl: string,
   options: {
     dateRange: DateRange;
     maxVideos?: number | null;
+    titleIncludes?: string;
   },
 ): Array<[string, Record<string, unknown>]> {
-  const flatEntries = listFlatPlaylistEntries(ytDlp, channelUrl);
+  const flatEntries = filterFlatEntriesByTitle(
+    listFlatPlaylistEntries(ytDlp, channelUrl),
+    options.titleIncludes,
+  );
   const videos: Array<[string, Record<string, unknown>]> = [];
 
   for (const entry of flatEntries) {
@@ -183,6 +199,7 @@ function listChannelVideosWithYtDlpInner(
     dateRange?: DateRange;
     maxVideos?: number | null;
     sourceId?: string;
+    titleIncludes?: string;
   } = {},
 ): Array<[string, Record<string, unknown>]> {
   const ytDlp = resolveYtDlpCommand();
@@ -194,6 +211,7 @@ function listChannelVideosWithYtDlpInner(
     return listChannelVideosWithDateProbe(ytDlp, channelUrl, {
       dateRange: options.dateRange,
       maxVideos: options.maxVideos,
+      titleIncludes: options.titleIncludes,
     });
   }
 

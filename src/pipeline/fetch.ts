@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 import { isWithinDateRange } from "../lib/date-range.js";
 import { getContentFetcher, usesEssayFetch } from "../lib/content-fetchers/index.js";
-import { halfYearDateRange, shouldExpandToHalfYear } from "../lib/half-year.js";
+import { halfYearDateRange, isQ2DateRange, shouldExpandToHalfYear } from "../lib/half-year.js";
 import { pipelineLog, withPipelineTiming } from "../lib/pipeline-log.js";
 import { appliesDurationLimits, isEligibleForScoring } from "../lib/scoring-limits.js";
 import { loadEnv } from "../lib/env.js";
@@ -225,7 +225,7 @@ async function runEssayFetch(
     argv.find((arg, index) => argv[index - 1] === "--request-delay") ?? 0.5,
   );
   const limitArg = argv.find((arg, index) => argv[index - 1] === "--limit");
-  const maxItems = limitArg ? Number(limitArg) : null;
+  const maxItems = limitArg ? Number(limitArg) : (source.essayMaxItems ?? null);
   const catalogUrl =
     argv.find((arg, index) => argv[index - 1] === "--channel-url") ?? source.channelUrl;
 
@@ -238,11 +238,16 @@ async function runEssayFetch(
 
   const context = {
     sourceId: source.id,
+    sourceTitle: source.title,
     sourceUrl: catalogUrl,
+    feedUrl: source.essayFeedUrl ?? null,
+    listingKind: source.essayListingKind,
+    channelName: source.essayChannelName,
     dateRange: source.dateRange,
     outputDir,
     requestDelayMs: requestDelay * 1000,
     maxItems,
+    urlIncludes: source.essayUrlIncludes,
   };
 
   let items;
@@ -410,7 +415,7 @@ export async function runFetch(argv: string[]): Promise<number> {
   const listWindow = listOptionsForSource(source);
   const probeLimit = Number(argv.find((arg, index) => argv[index - 1] === "--probe-limit") ?? listWindow.probeLimit);
   const limitArg = argv.find((arg, index) => argv[index - 1] === "--limit");
-  const maxVideos = limitArg ? Number(limitArg) : null;
+  const maxVideos = limitArg ? Number(limitArg) : (source.maxVideos ?? null);
   const requestDelay = Number(
     argv.find((arg, index) => argv[index - 1] === "--request-delay") ?? 1,
   );
@@ -432,14 +437,22 @@ export async function runFetch(argv: string[]): Promise<number> {
         dateRange: source.dateRange,
         maxVideos,
         sourceId: source.id,
+        titleIncludes: source.youtubeTitleIncludes,
       });
       videoIds = filterVideosBySource(videoIds, provider, source);
 
-      if (shouldExpandToHalfYear(videoIds.length, source.dateRange)) {
+      if (
+        shouldExpandToHalfYear(videoIds.length, source.dateRange) ||
+        (videoIds.length === 0 &&
+          source.dateRange &&
+          isQ2DateRange(source.dateRange))
+      ) {
         const h1Range = halfYearDateRange(Number(source.dateRange.since.slice(0, 4)));
-        console.log(
-          `Only ${videoIds.length} videos in Q2 — expanding to H1 (${h1Range.since}–${h1Range.until}).`,
-        );
+        const reason =
+          videoIds.length === 0
+            ? "No videos in Q2"
+            : `Only ${videoIds.length} videos in Q2`;
+        console.log(`${reason} — expanding to H1 (${h1Range.since}–${h1Range.until}).`);
         pipelineLog("yt-fetch", "expand-to-half-year", {
           sourceId: source.id,
           q2Count: videoIds.length,
@@ -450,6 +463,7 @@ export async function runFetch(argv: string[]): Promise<number> {
           dateRange: h1Range,
           maxVideos,
           sourceId: source.id,
+          titleIncludes: source.youtubeTitleIncludes,
         });
         videoIds = filterVideosBySource(videoIds, provider, {
           ...source,

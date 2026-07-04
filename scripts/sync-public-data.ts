@@ -1,9 +1,12 @@
 #!/usr/bin/env node
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
-import { listSources } from "../src/lib/sources.js";
+import { sourcePaths } from "../src/lib/paths.js";
+import { writePreviewRankingsIfMissing } from "../src/lib/preview-rankings.js";
 import { toPublicSource } from "../src/lib/public-source.js";
+import { listSources } from "../src/lib/sources.js";
+import { publishRankings } from "../src/pipeline/publish.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const MANIFEST_PATH = join(ROOT, "public", "data", "sources.json");
@@ -34,5 +37,40 @@ function syncVercelRewrites(): void {
   console.log(`Updated ${VERCEL_PATH} (${rewrites.length} source rewrites)`);
 }
 
+function syncRankingsFiles(): void {
+  let previewCount = 0;
+  let publishedCount = 0;
+
+  for (const source of listSources()) {
+    const paths = sourcePaths(source.id);
+
+    if (existsSync(paths.publicRankingsPath)) {
+      continue;
+    }
+
+    if (existsSync(paths.rankingsPath)) {
+      publishRankings({ sourceId: source.id });
+      publishedCount += 1;
+      continue;
+    }
+
+    if (writePreviewRankingsIfMissing(source.id)) {
+      previewCount += 1;
+    }
+  }
+
+  for (const source of listSources()) {
+    if (!existsSync(sourcePaths(source.id).publicRankingsPath)) {
+      writePreviewRankingsIfMissing(source.id);
+      previewCount += 1;
+    }
+  }
+
+  console.log(
+    `Synced rankings: ${publishedCount} published from scores, ${previewCount} preview from transcripts`,
+  );
+}
+
 syncSourcesManifest();
 syncVercelRewrites();
+syncRankingsFiles();

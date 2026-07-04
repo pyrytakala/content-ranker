@@ -1,0 +1,54 @@
+{
+  "source_id": "asterisk-issue-14-latest",
+  "video_count": 5,
+  "scored_count": 0,
+  "ranked_count": 0,
+  "rankings": [],
+  "other": [
+    {
+      "id": "chinas-last-bus",
+      "title": "Boarding China’s Last Bus",
+      "url": "https://asteriskmag.com/issues/14/chinas-last-bus",
+      "upload_date": "20260520",
+      "duration_seconds": null,
+      "speakers": "Asterisk",
+      "status": "pending"
+    },
+    {
+      "id": "we-re-all-one-crisis-away-from-taking-unlicensed-research-peptides",
+      "title": "We’re All One Crisis Away From Taking Unlicensed Research Peptides",
+      "url": "https://asteriskmag.com/issues/14/we-re-all-one-crisis-away-from-taking-unlicensed-research-peptides",
+      "upload_date": "20260603",
+      "duration_seconds": null,
+      "speakers": "Asterisk",
+      "status": "pending"
+    },
+    {
+      "id": "these-wild-young-people",
+      "title": "These Wild Young People",
+      "url": "https://asteriskmag.com/issues/14/these-wild-young-people",
+      "upload_date": "20260513",
+      "duration_seconds": null,
+      "speakers": "Asterisk",
+      "status": "pending"
+    },
+    {
+      "id": "the-mystery-in-the-medicine-cabinet",
+      "title": "The Mystery in the Medicine Cabinet",
+      "url": "https://asteriskmag.com/issues/14/the-mystery-in-the-medicine-cabinet",
+      "upload_date": "20260415",
+      "duration_seconds": null,
+      "speakers": "Asterisk",
+      "status": "pending"
+    },
+    {
+      "id": "the-doomers-are-all-right",
+      "title": "The Doomers Are All Right",
+      "url": "https://asteriskmag.com/issues/14/the-doomers-are-all-right",
+      "upload_date": "20260623",
+      "duration_seconds": null,
+      "speakers": "Asterisk",
+      "status": "pending"
+    }
+  ]
+}

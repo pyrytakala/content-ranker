@@ -108,8 +108,10 @@ export function listEssayLinks(catalogHtml: string): ContentListItem[] {
 }
 
 export function extractEssayBody(html: string): string {
-  const fontMatch = html.match(/<font size="2" face="verdana">([\s\S]*?)<\/font>/i);
-  const raw = fontMatch?.[1] ?? html;
+  const fontBlocks = [...html.matchAll(/<font size="2" face="verdana">([\s\S]*?)<\/font>/gi)].map(
+    (match) => match[1],
+  );
+  const raw = fontBlocks.length > 0 ? fontBlocks.join("\n") : html;
   const stripped = stripHtml(raw);
 
   const lines = stripped
@@ -117,7 +119,12 @@ export function extractEssayBody(html: string): string {
     .map((line) => line.trim())
     .filter(Boolean);
 
-  const bodyStart = lines.findIndex((line) => !/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}$/i.test(line));
+  const bodyStart = lines.findIndex(
+    (line) =>
+      !/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}$/i.test(
+        line,
+      ),
+  );
 
   return lines.slice(Math.max(bodyStart, 0)).join("\n\n").trim();
 }

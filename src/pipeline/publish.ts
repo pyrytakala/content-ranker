@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 import { applyLikeRankAdjustment, indexVideosById } from "../lib/ranking-adjustments.js";
 import { positiveDimensionTags } from "../lib/dimension-tags.js";
-import { isScoredRanking, selectTopPicks } from "../lib/top-picks.js";
+import { isScoredRanking } from "../lib/score-bands.js";
 import { appliesDurationLimits, isTooLongForScoring, isTooShortForScoring } from "../lib/scoring-limits.js";
 import { shouldDisplayVideo } from "../lib/source-filter.js";
 import { sourcePaths } from "../lib/paths.js";
@@ -171,10 +171,11 @@ export function sanitizePublishedPayload(
   source: SourceConfig,
 ): RankingsPayload {
   const scored = payload.rankings.filter(isScoredRanking);
-  const picks = selectTopPicks(scored).map(prepareForPublish);
-  const pickIds = new Set(picks.map((video) => video.id));
+  const published = [...scored]
+    .sort((a, b) => (b.composite ?? 0) - (a.composite ?? 0))
+    .map(prepareForPublish);
 
-  picks.forEach((video, index) => {
+  published.forEach((video, index) => {
     video.rank = index + 1;
   });
 
@@ -183,9 +184,7 @@ export function sanitizePublishedPayload(
     .filter((video) => isTooLongForScoring(video.duration_seconds, durationOpts))
     .map(stripDevFields);
 
-  const other = scored
-    .filter((video) => !pickIds.has(video.id))
-    .map(stripDevFields);
+  const other: RankedVideo[] = [];
 
   const {
     prompt_path: _promptPath,
@@ -197,8 +196,8 @@ export function sanitizePublishedPayload(
     ...publicFields,
     source_id: source.id,
     scored_count: scored.length,
-    ranked_count: picks.length,
-    rankings: picks,
+    ranked_count: published.length,
+    rankings: published,
     too_long: tooLong,
     other,
   };

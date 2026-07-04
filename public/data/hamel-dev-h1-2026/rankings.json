@@ -1,0 +1,54 @@
+{
+  "source_id": "hamel-dev-h1-2026",
+  "video_count": 5,
+  "scored_count": 0,
+  "ranked_count": 0,
+  "rankings": [],
+  "other": [
+    {
+      "id": "eval-smell",
+      "title": "“It’s Hard to Eval” Is a Product Smell – Hamel’s Blog",
+      "url": "https://hamel.dev/blog/posts/eval-smell/index.html",
+      "upload_date": "20260629",
+      "duration_seconds": null,
+      "speakers": "Hamel Husain",
+      "status": "pending"
+    },
+    {
+      "id": "revenge",
+      "title": "The Revenge of the Data Scientist – Hamel’s Blog",
+      "url": "https://hamel.dev/blog/posts/revenge/index.html",
+      "upload_date": "20260326",
+      "duration_seconds": null,
+      "speakers": "Hamel Husain",
+      "status": "pending"
+    },
+    {
+      "id": "evals-skills",
+      "title": "Evals Skills for Coding Agents – Hamel’s Blog",
+      "url": "https://hamel.dev/blog/posts/evals-skills/index.html",
+      "upload_date": "20260302",
+      "duration_seconds": null,
+      "speakers": "Hamel Husain",
+      "status": "pending"
+    },
+    {
+      "id": "ai-stack",
+      "title": "Why I Stopped Using nbdev – Hamel’s Blog",
+      "url": "https://hamel.dev/blog/posts/ai-stack/index.html",
+      "upload_date": "20260118",
+      "duration_seconds": null,
+      "speakers": "Hamel Husain",
+      "status": "pending"
+    },
+    {
+      "id": "evals-faq",
+      "title": "LLM Evals: Everything You Need to Know – Hamel’s Blog",
+      "url": "https://hamel.dev/blog/posts/evals-faq/index.html",
+      "upload_date": "20260115",
+      "duration_seconds": null,
+      "speakers": "Hamel Husain",
+      "status": "pending"
+    }
+  ]
+}
