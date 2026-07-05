@@ -1,35 +1,36 @@
 {
   "source_id": "stratechery-h1-2026",
-  "video_count": 1,
-  "scored_count": 1,
-  "ranked_count": 1,
+  "video_count": 35,
+  "scored_count": 35,
+  "ranked_count": 35,
   "rankings": [
     {
-      "id": "an-interview-with-figma-ceo-dylan-field-about-design-and-ai",
-      "title": "An Interview with Figma CEO Dylan Field About Design and AI",
+      "id": "apples-50-years-of-integration",
+      "title": "Apple’s 50 Years of Integration",
       "speakers": "Stratechery",
-      "url": "https://stratechery.com/2026/an-interview-with-figma-ceo-dylan-field-about-design-and-ai/",
+      "url": "https://stratechery.com/2026/apples-50-years-of-integration",
       "status": "ok",
-      "word_count": 8975,
+      "word_count": 3669,
       "summary_bullets": [
-        "Figma started with WebGL browser breakthrough.",
-        "Adobe acquisition failed due to regulatory resistance.",
-        "Field sees AI as tailwind, market sees headwind.",
-        "Design differs from art; problem-solving vs expression.",
-        "Figma's Canvas integrates code and design."
+        "Apple's 50-year integration strategy explained.",
+        "Apple faces no real competition in integration.",
+        "Apple's AI strategy: own customer, not infrastructure.",
+        "OpenAI threatens Apple's integrated model long-term.",
+        "Apple's history from Apple II to iPhone."
       ],
-      "composite": 77,
-      "confidence": "High",
-      "audience_level": "general",
+      "audience_level": "practitioner",
+      "display_title": "Apple’s 50 Years of Integration",
       "substance": 8.5,
-      "evidence": 5.5,
+      "evidence": 7.5,
       "specificity": 9,
       "insight_density": 8,
-      "non_promotion": 7,
+      "non_promotion": 10,
+      "practical_utility": 8,
+      "composite": 82.5,
       "like_count": null,
-      "upload_date": "20260625",
+      "upload_date": "20260331",
       "duration_seconds": null,
-      "composite_base": 77,
+      "composite_base": 82.5,
       "like_adjustment": 0,
       "length_adjustment": 0,
       "rank": 1,
@@ -45,8 +46,1302 @@
         {
           "label": "Insight",
           "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        },
+        {
+          "label": "Utility",
+          "tone": "positive"
         }
       ]
+    },
+    {
+      "id": "tsmc-risk",
+      "title": "TSMC Risk",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/tsmc-risk",
+      "status": "ok",
+      "word_count": 2590,
+      "summary_bullets": [
+        "TSMC's conservative CapEx limits AI chip supply.",
+        "Hyperscalers lose revenue due to chip shortage.",
+        "Competition needed to boost foundry investment.",
+        "Geopolitical risk less immediate than supply risk.",
+        "TSMC offloads risk to customers."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "TSMC Risk",
+      "substance": 8.5,
+      "evidence": 8,
+      "specificity": 9,
+      "insight_density": 8.5,
+      "non_promotion": 10,
+      "practical_utility": 7,
+      "composite": 81.75,
+      "like_count": null,
+      "upload_date": "20260126",
+      "duration_seconds": null,
+      "composite_base": 81.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 2,
+      "tags": [
+        {
+          "label": "Substance",
+          "tone": "positive"
+        },
+        {
+          "label": "Evidence",
+          "tone": "positive"
+        },
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "mythos-muse-and-the-opportunity-cost-of-compute",
+      "title": "Mythos, Muse, and the Opportunity Cost of Compute",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/mythos-muse-and-the-opportunity-cost-of-compute",
+      "status": "ok",
+      "word_count": 3275,
+      "summary_bullets": [
+        "Compute scarcity creates opportunity costs for AI firms.",
+        "Aggregation Theory's zero marginal cost assumption broken.",
+        "Anthropic limits Mythos due to compute allocation.",
+        "Meta benefits from no enterprise opportunity costs.",
+        "Owning demand may still beat owning supply."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "Mythos, Muse, and the Opportunity Cost of Compute",
+      "substance": 8.5,
+      "evidence": 8,
+      "specificity": 8.5,
+      "insight_density": 8,
+      "non_promotion": 10,
+      "practical_utility": 7.5,
+      "composite": 81.5,
+      "like_count": null,
+      "upload_date": "20260413",
+      "duration_seconds": null,
+      "composite_base": 81.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 3,
+      "tags": [
+        {
+          "label": "Substance",
+          "tone": "positive"
+        },
+        {
+          "label": "Evidence",
+          "tone": "positive"
+        },
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "tim-cooks-impeccable-timing",
+      "title": "Tim Cook’s Impeccable Timing",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/tim-cooks-impeccable-timing",
+      "status": "ok",
+      "word_count": 2670,
+      "summary_bullets": [
+        "Cook succeeded Jobs after his death.",
+        "Revenue grew 303% under Cook.",
+        "Cook’s operational genius scaled iPhone globally.",
+        "Apple’s China dependence is a vulnerability.",
+        "AI strategy may be a long-term risk."
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "Tim Cook’s Impeccable Timing",
+      "substance": 8.5,
+      "evidence": 8.5,
+      "specificity": 9,
+      "insight_density": 8,
+      "non_promotion": 9.5,
+      "practical_utility": 7,
+      "composite": 81.25,
+      "like_count": null,
+      "upload_date": "20260421",
+      "duration_seconds": null,
+      "composite_base": 81.25,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 4,
+      "tags": [
+        {
+          "label": "Substance",
+          "tone": "positive"
+        },
+        {
+          "label": "Evidence",
+          "tone": "positive"
+        },
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "thin-is-in",
+      "title": "Thin Is In",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/thin-is-in",
+      "status": "ok",
+      "word_count": 2215,
+      "summary_bullets": [
+        "AI shifts computing back to thin clients.",
+        "Chat interfaces require minimal local compute.",
+        "Memory shortage makes thick clients expensive.",
+        "Agents make local compute unnecessary for tasks.",
+        "Thick clients plateau while AI workflows grow."
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "Thin Is In",
+      "substance": 8.5,
+      "evidence": 6,
+      "specificity": 8,
+      "insight_density": 8.5,
+      "non_promotion": 10,
+      "practical_utility": 7.5,
+      "composite": 79,
+      "like_count": null,
+      "upload_date": "20260217",
+      "duration_seconds": null,
+      "composite_base": 79,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 5,
+      "tags": [
+        {
+          "label": "Substance",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "the-google-capital-company",
+      "title": "The Google Capital Company",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/the-google-capital-company",
+      "status": "ok",
+      "word_count": 2572,
+      "summary_bullets": [
+        "Google’s ad model: free supply, customers bid up prices.",
+        "See’s Candies profits funded Berkshire’s railway investment.",
+        "Google Cloud’s growth mirrors See’s-to-BNSF strategy.",
+        "Alphabet raises $80B equity, including $10B from Berkshire."
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "The Google Capital Company",
+      "substance": 8,
+      "evidence": 7.5,
+      "specificity": 9,
+      "insight_density": 8,
+      "non_promotion": 10,
+      "practical_utility": 6.5,
+      "composite": 77.5,
+      "like_count": null,
+      "upload_date": "20260602",
+      "duration_seconds": null,
+      "composite_base": 77.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 6,
+      "tags": [
+        {
+          "label": "Substance",
+          "tone": "positive"
+        },
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "microsoft-and-software-survival",
+      "title": "Microsoft and Software Survival",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/microsoft-and-software-survival",
+      "status": "ok",
+      "word_count": 3373,
+      "summary_bullets": [
+        "Azure miss from internal GPU allocation",
+        "AI coding lets software companies write more software",
+        "SaaS ecosystem faces fierce competition",
+        "Microsoft's agent strategy uses identity"
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "Microsoft and Software Survival",
+      "substance": 7.5,
+      "evidence": 7,
+      "specificity": 8.5,
+      "insight_density": 8,
+      "non_promotion": 10,
+      "practical_utility": 7.5,
+      "composite": 77.5,
+      "like_count": null,
+      "upload_date": "20260203",
+      "duration_seconds": null,
+      "composite_base": 77.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 7,
+      "tags": [
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "an-interview-with-figma-ceo-dylan-field-about-design-and-ai",
+      "title": "An Interview with Figma CEO Dylan Field About Design and AI",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-figma-ceo-dylan-field-about-design-and-ai/",
+      "status": "ok",
+      "word_count": 8975,
+      "summary_bullets": [
+        "Figma started with WebGL browser breakthrough.",
+        "Adobe acquisition failed due to regulatory resistance.",
+        "Field sees AI as tailwind, market sees headwind.",
+        "Design differs from art; problem-solving vs expression.",
+        "Figma's Canvas integrates code and design."
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "substance": 8.5,
+      "evidence": 5.5,
+      "specificity": 9,
+      "insight_density": 8,
+      "non_promotion": 7,
+      "composite": 77.33,
+      "like_count": null,
+      "upload_date": "20260625",
+      "duration_seconds": null,
+      "composite_base": 77.33,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 8,
+      "tags": [
+        {
+          "label": "Substance",
+          "tone": "positive"
+        },
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "agents-over-bubbles",
+      "title": "Agents Over Bubbles",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/agents-over-bubbles",
+      "status": "ok",
+      "word_count": 4015,
+      "summary_bullets": [
+        "Three LLM inflection points: ChatGPT, o1, agents.",
+        "Agents combine model with harness for verification.",
+        "Enterprise demand for agents justifies massive capex.",
+        "Model commoditization is false; integration matters.",
+        "AI bubble not happening; spending is warranted."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "Agents Over Bubbles",
+      "substance": 7.5,
+      "evidence": 6,
+      "specificity": 8,
+      "insight_density": 8.5,
+      "non_promotion": 9,
+      "practical_utility": 7.5,
+      "composite": 76,
+      "like_count": null,
+      "upload_date": "20260316",
+      "duration_seconds": null,
+      "composite_base": 76,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 9,
+      "tags": [
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "amazons-durability",
+      "title": "Amazon’s Durability",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/amazons-durability",
+      "status": "ok",
+      "word_count": 3573,
+      "summary_bullets": [
+        "Amazon launches logistics service for others.",
+        "AWS custom chips (Nitro, Graviton) reduce costs.",
+        "AI inference shift benefits AWS architecture.",
+        "Amazon invested in Anthropic for compute.",
+        "Physical world focus gives Amazon advantage."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "Amazon’s Durability",
+      "substance": 7.5,
+      "evidence": 7,
+      "specificity": 8,
+      "insight_density": 7.5,
+      "non_promotion": 9,
+      "practical_utility": 7,
+      "composite": 74.25,
+      "like_count": null,
+      "upload_date": "20260505",
+      "duration_seconds": null,
+      "composite_base": 74.25,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 10,
+      "tags": [
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "the-inference-shift",
+      "title": "The Inference Shift",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/the-inference-shift",
+      "status": "ok",
+      "word_count": 2343,
+      "summary_bullets": [
+        "AI inference splits into answer vs agentic.",
+        "Agentic inference prioritizes memory over speed.",
+        "Cerebras offers fast on-chip SRAM for answer inference.",
+        "Nvidia’s GPU advantage may shrink for agentic workloads.",
+        "Slower, cheaper chips become viable without human latency."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "The Inference Shift",
+      "substance": 7.5,
+      "evidence": 6,
+      "specificity": 8,
+      "insight_density": 7.5,
+      "non_promotion": 10,
+      "practical_utility": 7,
+      "composite": 73.25,
+      "like_count": null,
+      "upload_date": "20260511",
+      "duration_seconds": null,
+      "composite_base": 73.25,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 11,
+      "tags": [
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "anthropics-safety-superpower",
+      "title": "Anthropic’s Safety Superpower",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/anthropics-safety-superpower",
+      "status": "ok",
+      "word_count": 3008,
+      "summary_bullets": [
+        "Anthropic released Fable after claiming Mythos too dangerous.",
+        "US government ordered export controls on Fable/Mythos.",
+        "Anthropic retains user data for 30 days, citing safety.",
+        "Anthropic silently degraded model for LLM development.",
+        "Company's safety narrative aligns with business goals."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "Anthropic’s Safety Superpower",
+      "substance": 7.5,
+      "evidence": 6.5,
+      "specificity": 8.5,
+      "insight_density": 8,
+      "non_promotion": 9.5,
+      "practical_utility": 6,
+      "composite": 72.75,
+      "like_count": null,
+      "upload_date": "20260615",
+      "duration_seconds": null,
+      "composite_base": 72.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 12,
+      "tags": [
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "the-nvidia-ai-pc-project-solara-microsoft-ai",
+      "title": "The Nvidia AI PC, Project Solara, Microsoft AI",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/the-nvidia-ai-pc-project-solara-microsoft-ai",
+      "status": "ok",
+      "word_count": 2413,
+      "summary_bullets": [
+        "Nvidia's RTX Spark PC chip announced.",
+        "Microsoft's Project Solara: agent devices on Android.",
+        "Microsoft unveils in-house MAI models.",
+        "Author argues local AI PCs are underwhelming.",
+        "Cloud-centric agent model is better."
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "The Nvidia AI PC, Project Solara, Microsoft AI",
+      "substance": 7.5,
+      "evidence": 6,
+      "specificity": 8,
+      "insight_density": 7.5,
+      "non_promotion": 9,
+      "practical_utility": 6.5,
+      "composite": 71.5,
+      "like_count": null,
+      "upload_date": "20260603",
+      "duration_seconds": null,
+      "composite_base": 71.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 13,
+      "tags": [
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "apple-you-still-dont-understand-the-vision-pro",
+      "title": "Apple: You (Still) Don’t Understand the Vision Pro",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/apple-you-still-dont-understand-the-vision-pro",
+      "status": "ok",
+      "word_count": 2703,
+      "summary_bullets": [
+        "Vision Pro sports broadcasts have excessive camera cuts.",
+        "Apple's production ruins sense of presence.",
+        "Author advocates single fixed camera perspective.",
+        "Apple's approach makes experience worse than TV.",
+        "Six Lakers games scheduled, not enough."
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "display_title": "Apple: You (Still) Don’t Understand the Vision Pro",
+      "substance": 7.5,
+      "evidence": 6,
+      "specificity": 8.5,
+      "insight_density": 6.5,
+      "non_promotion": 8,
+      "practical_utility": 7,
+      "composite": 70.75,
+      "like_count": null,
+      "upload_date": "20260112",
+      "duration_seconds": null,
+      "composite_base": 70.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 14,
+      "tags": [
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "anthropic-and-alignment",
+      "title": "Anthropic and Alignment",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/anthropic-and-alignment",
+      "status": "ok",
+      "word_count": 3602,
+      "summary_bullets": [
+        "Anthropic refuses Pentagon's \"any lawful use\" demand.",
+        "US government threatens to cut off Anthropic.",
+        "Author argues might makes right in AI governance.",
+        "Anthropic's CEO wants control like nuclear weapons.",
+        "Author says Anthropic must submit or be destroyed."
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "Anthropic and Alignment",
+      "substance": 7.5,
+      "evidence": 5.5,
+      "specificity": 7,
+      "insight_density": 7,
+      "non_promotion": 9,
+      "practical_utility": 6.5,
+      "composite": 68.75,
+      "like_count": null,
+      "upload_date": "20260302",
+      "duration_seconds": null,
+      "composite_base": 68.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 15,
+      "tags": [
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "the-iphones-last-stand",
+      "title": "The iPhone’s Last Stand",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/the-iphones-last-stand",
+      "status": "ok",
+      "word_count": 1845,
+      "summary_bullets": [
+        "Apple’s Siri AI is behind but good enough.",
+        "Microsoft’s Project Solara targets enterprise agents.",
+        "Consumers prefer wasting time over productivity.",
+        "iPhone’s centrality drives Apple’s AI strategy.",
+        "Agents work better with enterprise context."
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "Apple’s AI Strategy and the Consumer vs Enterprise Divide",
+      "substance": 7.5,
+      "evidence": 5.5,
+      "specificity": 7,
+      "insight_density": 6,
+      "non_promotion": 10,
+      "practical_utility": 6.5,
+      "composite": 67.25,
+      "like_count": null,
+      "upload_date": "20260609",
+      "duration_seconds": null,
+      "composite_base": 67.25,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 16,
+      "tags": [
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "an-interview-with-arm-ceo-rene-haas-about-selling-chips",
+      "title": "An Interview with Arm CEO Rene Haas About Selling Chips",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-arm-ceo-rene-haas-about-selling-chips",
+      "status": "ok",
+      "word_count": 8607,
+      "summary_bullets": [
+        "Arm shifts to selling its own chips.",
+        "Meta is first customer for new CPU.",
+        "CPUs critical for AI token distribution.",
+        "Arm's new chip uses TSMC 3nm.",
+        "Memory supply is bigger constraint than logic."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "An Interview with Arm CEO Rene Haas About Selling Chips",
+      "substance": 7.5,
+      "evidence": 5.5,
+      "specificity": 8,
+      "insight_density": 7,
+      "non_promotion": 3,
+      "practical_utility": 6.5,
+      "composite": 66.75,
+      "like_count": null,
+      "upload_date": "20260326",
+      "duration_seconds": null,
+      "composite_base": 66.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 17,
+      "tags": []
+    },
+    {
+      "id": "an-interview-with-netflix-ceo-greg-peters-about-engagement-and-warner-bros",
+      "title": "An Interview with Netflix co-CEO Greg Peters About Engagement and Warner Bros.",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-netflix-ceo-greg-peters-about-engagement-and-warner-bros",
+      "status": "ok",
+      "word_count": 10494,
+      "summary_bullets": [
+        "Netflix engagement metrics and live events strategy.",
+        "Warner Bros. acquisition rationale and regulatory arguments.",
+        "Advertising revenue growth and ad-tier dynamics.",
+        "Competition with YouTube and professional vs. UGC content."
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "An Interview with Netflix co-CEO Greg Peters About Engagement and Warner Bros.",
+      "substance": 7.5,
+      "evidence": 6,
+      "specificity": 8.5,
+      "insight_density": 7,
+      "non_promotion": 7,
+      "practical_utility": 5,
+      "composite": 66.25,
+      "like_count": null,
+      "upload_date": "20260122",
+      "duration_seconds": null,
+      "composite_base": 66.25,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 18,
+      "tags": [
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "an-interview-with-nvidia-ceo-jensen-huang-about-accelerated-computing",
+      "title": "An Interview with Nvidia CEO Jensen Huang About Accelerated Computing",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-nvidia-ceo-jensen-huang-about-accelerated-computing",
+      "status": "ok",
+      "word_count": 7186,
+      "summary_bullets": [
+        "Nvidia CEO discusses accelerated computing strategy.",
+        "AI crossed threshold for economic value.",
+        "Nvidia's CPU and Groq acquisition explained.",
+        "Doomer influence on Washington criticized.",
+        "Nvidia's unifying theory of computing."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "An Interview with Nvidia CEO Jensen Huang About Accelerated Computing",
+      "substance": 8.5,
+      "evidence": 3.5,
+      "specificity": 6,
+      "insight_density": 7.5,
+      "non_promotion": 4,
+      "practical_utility": 6.5,
+      "composite": 65.75,
+      "like_count": null,
+      "upload_date": "20260317",
+      "duration_seconds": null,
+      "composite_base": 65.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 19,
+      "tags": [
+        {
+          "label": "Substance",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "an-interview-with-united-ceo-scott-kirby-about-tech-transformation",
+      "title": "An Interview with United CEO Scott Kirby About Tech Transformation",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-united-ceo-scott-kirby-about-tech-transformation",
+      "status": "ok",
+      "word_count": 10802,
+      "summary_bullets": [
+        "United CEO on tech-driven transformation",
+        "Legacy system rewrite was key unlock",
+        "Eliminated delay codes to improve culture",
+        "Investing in customer experience pays off",
+        "AI has limits; brainpower still essential"
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "display_title": "An Interview with United CEO Scott Kirby About Tech Transformation",
+      "substance": 6.5,
+      "evidence": 5.5,
+      "specificity": 8.5,
+      "insight_density": 7,
+      "non_promotion": 6,
+      "practical_utility": 6,
+      "composite": 65,
+      "like_count": null,
+      "upload_date": "20260115",
+      "duration_seconds": null,
+      "composite_base": 65,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 20,
+      "tags": [
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        }
+      ]
+    },
+    {
+      "id": "an-interview-with-new-york-times-ceo-meredith-kopit-levien-about-betting-on-humans-with-expertise",
+      "title": "An Interview with New York Times CEO Meredith Kopit Levien About Betting on Humans With Expertise",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-new-york-times-ceo-meredith-kopit-levien-about-betting-on-humans-with-expertise",
+      "status": "ok",
+      "word_count": 10003,
+      "summary_bullets": [
+        "NYT CEO discusses subscription bundle strategy",
+        "Games and sports acquisitions exceeded expectations",
+        "NYT bets on human expertise vs AI",
+        "Video push aims to engage new audiences",
+        "Advertising business growing again"
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "display_title": "An Interview with New York Times CEO Meredith Kopit Levien About Betting on Humans With Expertise",
+      "substance": 6.5,
+      "evidence": 5.5,
+      "specificity": 8,
+      "insight_density": 6,
+      "non_promotion": 7,
+      "practical_utility": 6.5,
+      "composite": 64.25,
+      "like_count": null,
+      "upload_date": "20260409",
+      "duration_seconds": null,
+      "composite_base": 64.25,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 21,
+      "tags": []
+    },
+    {
+      "id": "an-interview-with-microsoft-ceo-satya-nadella-about-finding-core-competencies",
+      "title": "An Interview with Microsoft CEO Satya Nadella About Finding Core Competencies",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-microsoft-ceo-satya-nadella-about-finding-core-competencies",
+      "status": "ok",
+      "word_count": 8536,
+      "summary_bullets": [
+        "Nadella defines Microsoft's core as platform for enterprise AI.",
+        "Microsoft builds own MAI models alongside OpenAI partnership.",
+        "AI agents shift software to hybrid per-seat/usage pricing.",
+        "Project Solara targets ambient agentic devices for enterprise.",
+        "Microsoft prioritizes internal R&D compute over hyperscale expansion."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "An Interview with Microsoft CEO Satya Nadella About Finding Core Competencies",
+      "substance": 7.5,
+      "evidence": 4,
+      "specificity": 8,
+      "insight_density": 6.5,
+      "non_promotion": 4,
+      "practical_utility": 6,
+      "composite": 62.75,
+      "like_count": null,
+      "upload_date": "20260604",
+      "duration_seconds": null,
+      "composite_base": 62.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 22,
+      "tags": []
+    },
+    {
+      "id": "an-interview-with-openai-ceo-sam-altman-and-aws-ceo-matt-garman-about-bedrock-managed-agents",
+      "title": "An Interview with OpenAI CEO Sam Altman and AWS CEO Matt Garman About Bedrock Managed Agents",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-openai-ceo-sam-altman-and-aws-ceo-matt-garman-about-bedrock-managed-agents",
+      "status": "ok",
+      "word_count": 9577,
+      "summary_bullets": [
+        "OpenAI models now on AWS Bedrock.",
+        "New managed agent service for enterprises.",
+        "Microsoft-OpenAI deal amended for multi-cloud.",
+        "AWS and OpenAI co-built agent runtime.",
+        "Focus shifts from training to inference."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "An Interview with OpenAI CEO Sam Altman and AWS CEO Matt Garman About Bedrock Managed Agents",
+      "substance": 7,
+      "evidence": 5.5,
+      "specificity": 7.5,
+      "insight_density": 6,
+      "non_promotion": 2,
+      "practical_utility": 6.5,
+      "composite": 62.5,
+      "like_count": null,
+      "upload_date": "20260428",
+      "duration_seconds": null,
+      "composite_base": 62.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 23,
+      "tags": []
+    },
+    {
+      "id": "an-interview-with-google-cloud-ceo-thomas-kurian-about-the-agentic-moment",
+      "title": "An Interview with Google Cloud CEO Thomas Kurian About the Agentic Moment",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-google-cloud-ceo-thomas-kurian-about-the-agentic-moment",
+      "status": "ok",
+      "word_count": 8316,
+      "summary_bullets": [
+        "Google Cloud focuses on agent platform.",
+        "Gemini models improve reasoning and memory.",
+        "Google sells TPUs to external customers.",
+        "Google Cloud integrates across multi-cloud.",
+        "Cybersecurity and AI converge."
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "An Interview with Google Cloud CEO Thomas Kurian About the Agentic Moment",
+      "substance": 6.5,
+      "evidence": 5.5,
+      "specificity": 8,
+      "insight_density": 7,
+      "non_promotion": 3,
+      "practical_utility": 5,
+      "composite": 60.5,
+      "like_count": null,
+      "upload_date": "20260423",
+      "duration_seconds": null,
+      "composite_base": 60.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 24,
+      "tags": []
+    },
+    {
+      "id": "the-spacex-ipo-and-data-centers-in-space",
+      "title": "The SpaceX IPO and Data Centers in Space",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/the-spacex-ipo-and-data-centers-in-space",
+      "status": "ok",
+      "word_count": 3334,
+      "summary_bullets": [
+        "SpaceX IPO seeks $2 trillion valuation.",
+        "Data centers in space could host AI inference.",
+        "Agentic inference is largest future AI market.",
+        "Starlink already provides satellite connectivity.",
+        "Musk's track record enables speculative bets."
+      ],
+      "confidence": "High",
+      "audience_level": "practitioner",
+      "display_title": "The SpaceX IPO and Data Centers in Space",
+      "substance": 7.5,
+      "evidence": 5.5,
+      "specificity": 7,
+      "insight_density": 6,
+      "non_promotion": 3,
+      "practical_utility": 5,
+      "composite": 60,
+      "like_count": null,
+      "upload_date": "20260527",
+      "duration_seconds": null,
+      "composite_base": 60,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 25,
+      "tags": []
+    },
+    {
+      "id": "an-interview-with-ben-thompson-by-john-collison-on-the-cheeky-pint-podcast",
+      "title": "An Interview with Ben Thompson by John Collison on the Cheeky Pint Podcast",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-ben-thompson-by-john-collison-on-the-cheeky-pint-podcast",
+      "status": "ok",
+      "word_count": 16540,
+      "summary_bullets": [
+        "Interview covers tech strategy, AI, ads, TSMC",
+        "Thompson argues ads are underappreciated and beneficial",
+        "Discusses Meta’s platform obsession and TikTok algorithm",
+        "TSMC’s conservative CapEx may cause future chip shortage",
+        "Stratechery’s subscription model and bundle skepticism"
+      ],
+      "confidence": "High",
+      "audience_level": "professional",
+      "display_title": "An Interview with Ben Thompson by John Collison on the Cheeky Pint Podcast",
+      "substance": 6.5,
+      "evidence": 4.5,
+      "specificity": 6,
+      "insight_density": 5.5,
+      "non_promotion": 7,
+      "practical_utility": 5.5,
+      "composite": 57.25,
+      "like_count": null,
+      "upload_date": "20260212",
+      "duration_seconds": null,
+      "composite_base": 57.25,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 26,
+      "tags": []
+    },
+    {
+      "id": "an-interview-with-f1-driver-and-venture-capitalist-nico-rosberg-about-the-drive-to-win",
+      "title": "An Interview with F1 Driver and Venture Capitalist Nico Rosberg About the Drive to Win",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/an-interview-with-f1-driver-and-venture-capitalist-nico-rosberg-about-the-drive-to-win",
+      "status": "ok",
+      "word_count": 9808,
+      "summary_bullets": [
+        "Used sports psychology for mental edge.",
+        "Eliminated jet lag via sleep science.",
+        "Leverages F1 network for VC deals.",
+        "Connects European capital to US startups.",
+        "Advises founders on mindset and resilience."
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "display_title": "An Interview with F1 Driver and Venture Capitalist Nico Rosberg About the Drive to Win",
+      "substance": 5.5,
+      "evidence": 4,
+      "specificity": 7.5,
+      "insight_density": 5,
+      "non_promotion": 6,
+      "practical_utility": 5,
+      "composite": 52.75,
+      "like_count": null,
+      "upload_date": "20260416",
+      "duration_seconds": null,
+      "composite_base": 52.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 27,
+      "tags": []
+    },
+    {
+      "id": "ai-and-the-human-condition",
+      "title": "AI and the Human Condition",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/ai-and-the-human-condition",
+      "status": "ok",
+      "word_count": 2860,
+      "summary_bullets": [
+        "AI threatens content producers, enables community.",
+        "Capital may dominate labor by 22nd century.",
+        "Humans value human-made content over AI.",
+        "New human-centric economies will arise.",
+        "Historical labor shifts suggest new jobs."
+      ],
+      "confidence": "Med",
+      "audience_level": "general",
+      "display_title": "AI and the Human Condition",
+      "substance": 6.5,
+      "evidence": 4.5,
+      "specificity": 5.5,
+      "insight_density": 5,
+      "non_promotion": 3,
+      "practical_utility": 3.5,
+      "composite": 48.75,
+      "like_count": null,
+      "upload_date": "20260105",
+      "duration_seconds": null,
+      "composite_base": 48.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 28,
+      "tags": []
+    },
+    {
+      "id": "ai-power-now-and-in-100-years",
+      "title": "2026.02: AI Power, Now and In 100 Years",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/ai-power-now-and-in-100-years",
+      "status": "ok",
+      "word_count": 772,
+      "summary_bullets": [
+        "AI won’t make humans economically irrelevant.",
+        "Power generation is a critical AI infrastructure challenge.",
+        "China’s Venezuela response affects Taiwan and oil imports.",
+        "Nvidia licensed Groq’s technology in a deal model.",
+        "U.S. foreign policy mixes cold war goals without cold war rhetoric."
+      ],
+      "audience_level": "practitioner",
+      "display_title": "2026.02: AI Power, Now and In 100 Years",
+      "substance": 4.5,
+      "evidence": 3,
+      "specificity": 4,
+      "insight_density": 2,
+      "non_promotion": 1.5,
+      "practical_utility": 4,
+      "composite": 34.5,
+      "like_count": null,
+      "upload_date": "20260109",
+      "duration_seconds": null,
+      "composite_base": 34.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 29,
+      "tags": []
+    },
+    {
+      "id": "the-chip-fly-in-the-ai-ointment",
+      "title": "2026.05: The Chip Fly in the AI Ointment",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/the-chip-fly-in-the-ai-ointment",
+      "status": "ok",
+      "word_count": 775,
+      "summary_bullets": [
+        "Chip shortages threaten AI growth",
+        "Meta plans $135B AI spending",
+        "China purges top PLA generals",
+        "Hyperscalers need TSMC competitor",
+        "Prediction markets explained (Kalshi)"
+      ],
+      "confidence": "Low",
+      "audience_level": "general",
+      "display_title": "Stratechery Newsletter: AI Chip Shortage, Meta Spending, China PLA Purge",
+      "substance": 3,
+      "evidence": 2,
+      "specificity": 4,
+      "insight_density": 2.5,
+      "non_promotion": 1,
+      "practical_utility": 2,
+      "composite": 25,
+      "like_count": null,
+      "upload_date": "20260130",
+      "duration_seconds": null,
+      "composite_base": 25,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 30,
+      "tags": []
+    },
+    {
+      "id": "technology-doings",
+      "title": "2026.03: Technology Doings",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/technology-doings",
+      "status": "ok",
+      "word_count": 763,
+      "composite": 16.5,
+      "like_count": null,
+      "upload_date": "20260116",
+      "duration_seconds": null,
+      "composite_base": 16.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 31,
+      "tags": []
+    },
+    {
+      "id": "shifting-alliances-in-a-changing-world",
+      "title": "2026.20: Shifting Alliances in a Changing World",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/shifting-alliances-in-a-changing-world",
+      "status": "ok",
+      "word_count": 772,
+      "summary_bullets": [
+        "Weekly roundup of Stratechery articles and podcasts",
+        "AI inference split into answer and agentic types",
+        "Anthropic-xAI deal and Elon Musk's lawsuits",
+        "US-China summit analysis with modest expectations",
+        "Apple, Intel, and OpenAI deployment company news"
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "display_title": "2026.20: Shifting Alliances in a Changing World",
+      "substance": 1.5,
+      "evidence": 0.5,
+      "specificity": 2,
+      "insight_density": 1,
+      "non_promotion": 0.5,
+      "practical_utility": 0.5,
+      "composite": 10,
+      "like_count": null,
+      "upload_date": "20260515",
+      "duration_seconds": null,
+      "composite_base": 10,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 32,
+      "tags": []
+    },
+    {
+      "id": "he-came-he-saw-he-cooked",
+      "title": "2026.17: He Came, He Saw, He Cooked",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/he-came-he-saw-he-cooked",
+      "status": "ok",
+      "word_count": 826,
+      "summary_bullets": [
+        "Tim Cook stepping down as Apple CEO.",
+        "SpaceX partnering with Cursor for AI.",
+        "Xi calls for Strait of Hormuz reopening.",
+        "TSMC earnings show AI growth skepticism.",
+        "John Ternus likely next Apple CEO."
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "display_title": "2026.17: He Came, He Saw, He Cooked",
+      "substance": 1,
+      "evidence": 0.5,
+      "specificity": 2,
+      "insight_density": 1,
+      "non_promotion": 0,
+      "practical_utility": 1,
+      "composite": 9.75,
+      "like_count": null,
+      "upload_date": "20260424",
+      "duration_seconds": null,
+      "composite_base": 9.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 33,
+      "tags": []
+    },
+    {
+      "id": "myth-and-mythos",
+      "title": "2026.15: Myth and Mythos",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/myth-and-mythos",
+      "status": "ok",
+      "word_count": 773,
+      "summary_bullets": [
+        "Anthropic's new model too dangerous to release.",
+        "New York Times CEO discusses AI and video strategy.",
+        "New Yorker profile misses deeper questions on Altman.",
+        "OpenAI's purchase of TBPN makes no sense.",
+        "Anthropic's growth trajectory spans two years."
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "display_title": "Stratechery Weekly: Anthropic’s New Model, New York Times Strategy, and Sam Altman Profile Critique",
+      "substance": 1,
+      "evidence": 0.5,
+      "specificity": 2,
+      "insight_density": 1,
+      "non_promotion": 1,
+      "practical_utility": 0.5,
+      "composite": 9,
+      "like_count": null,
+      "upload_date": "20260410",
+      "duration_seconds": null,
+      "composite_base": 9,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 34,
+      "tags": []
+    },
+    {
+      "id": "netflix-luka-and-life-in-la-la-land",
+      "title": "2026.04: Netflix, Luka, and Life in La La Land",
+      "speakers": "Stratechery",
+      "url": "https://stratechery.com/2026/netflix-luka-and-life-in-la-la-land",
+      "status": "ok",
+      "word_count": 813,
+      "summary_bullets": [
+        "Newsletter summarizing Stratechery articles and podcasts.",
+        "Netflix co-CEO interview on engagement and Warner Bros.",
+        "TSMC capacity constraints and AI chip dependency.",
+        "Luka Doncic trade analyzed as possibly defensible long-term.",
+        "Apple Vision Pro video linked."
+      ],
+      "confidence": "High",
+      "audience_level": "general",
+      "display_title": "2026.04: Netflix, Luka, and Life in La La Land",
+      "substance": 0.5,
+      "evidence": 0.5,
+      "specificity": 1,
+      "insight_density": 1.5,
+      "non_promotion": 0.5,
+      "practical_utility": 0.5,
+      "composite": 7.5,
+      "like_count": null,
+      "upload_date": "20260123",
+      "duration_seconds": null,
+      "composite_base": 7.5,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 35,
+      "tags": []
     }
   ],
   "too_long": [],

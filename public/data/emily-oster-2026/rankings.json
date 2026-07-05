@@ -1,8 +1,63 @@
 {
   "source_id": "emily-oster-2026",
-  "video_count": 0,
-  "scored_count": 0,
-  "ranked_count": 0,
-  "rankings": [],
+  "video_count": 1,
+  "scored_count": 1,
+  "ranked_count": 1,
+  "rankings": [
+    {
+      "id": "infant-formula-botulism-outbreaks",
+      "title": "There Have Been Two Botulism Outbreaks in Infant Formula. Why?",
+      "speakers": "ParentData",
+      "url": "https://parentdata.org/babies/infant-formula-botulism-outbreaks/",
+      "status": "ok",
+      "word_count": 5506,
+      "summary_bullets": [
+        "Two formula brands recalled for botulism.",
+        "Outbreaks likely linked via milk supplier.",
+        "No evidence one formula brand is better.",
+        "Switch formulas confidently if needed.",
+        "FDA needs better testing for botulism."
+      ],
+      "audience_level": "general",
+      "display_title": "There Have Been Two Botulism Outbreaks in Infant Formula. Why?",
+      "substance": 8.5,
+      "evidence": 8,
+      "specificity": 9,
+      "insight_density": 9,
+      "non_promotion": 10,
+      "practical_utility": 3,
+      "composite": 72.75,
+      "like_count": null,
+      "upload_date": "20260628",
+      "duration_seconds": null,
+      "composite_base": 72.75,
+      "like_adjustment": 0,
+      "length_adjustment": 0,
+      "rank": 1,
+      "tags": [
+        {
+          "label": "Substance",
+          "tone": "positive"
+        },
+        {
+          "label": "Evidence",
+          "tone": "positive"
+        },
+        {
+          "label": "Specificity",
+          "tone": "positive"
+        },
+        {
+          "label": "Insight",
+          "tone": "positive"
+        },
+        {
+          "label": "Non-promo",
+          "tone": "positive"
+        }
+      ]
+    }
+  ],
+  "too_long": [],
   "other": []
 }

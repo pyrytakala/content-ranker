@@ -303,7 +303,7 @@
       "categories": [
         "startups"
       ],
-      "rankedCount": 1
+      "rankedCount": 35
     },
     {
       "id": "import-ai-h1-2026",
@@ -528,9 +528,9 @@
         "until": "20261231"
       },
       "maxDisplayAgeDays": null,
-      "primaryCategory": "ai-ml",
+      "primaryCategory": "startups",
       "categories": [
-        "ai-ml"
+        "startups"
       ],
       "rankedCount": 0
     },
@@ -724,7 +724,7 @@
       "categories": [
         "finance"
       ],
-      "rankedCount": 2
+      "rankedCount": 55
     },
     {
       "id": "ten-percent-happier-2026",
@@ -819,7 +819,7 @@
       "categories": [
         "science-health"
       ],
-      "rankedCount": 0
+      "rankedCount": 1
     },
     {
       "id": "barbell-medicine-2026",
@@ -895,7 +895,7 @@
       "categories": [
         "startups"
       ],
-      "rankedCount": 1
+      "rankedCount": 25
     }
   ]
 }
